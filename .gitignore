@@ -1,0 +1,20 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+
+/.vs/Infrastructure
+/Src/.vs/Infrastructure/v15
+/Src/Infrastructure.Auth.Imp/obj/Debug
+/Src/Infrastructure.Auth.ImpCore/obj
+/Src/Infrastructure.Auth.Interface/obj/Debug
+/Src/Infrastructure.Auth.UI/obj/Debug
+/Src/Infrastructure.Bin
+/Src/Infrastructure.Factory/obj/Debug
+/Src/Infrastructure.Imp/obj/Debug
+/Src/Infrastructure.Interface/obj/Debug
+/Src/Infrastructure.UI/obj/Debug
+/Src/Infrastructure.UT/obj/Debug
+/Src/Infrastructure.UT.Bin
+/Src/Infrastructure.Utils/obj/Debug
+/Src/packages

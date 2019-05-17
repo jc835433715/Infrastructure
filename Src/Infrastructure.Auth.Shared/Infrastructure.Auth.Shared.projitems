@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>968c8cf9-7e12-42eb-ad79-8100e8cefdf0</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Infrastructure.Auth.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingGroupPermission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Permission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingRoleGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingRolePermission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingUserRole.cs" />
+  </ItemGroup>
+</Project>

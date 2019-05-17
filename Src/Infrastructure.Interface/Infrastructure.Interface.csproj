@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87EFC0D7-6F89-4FE1-9A04-57D547FFD199}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infrastructure</RootNamespace>
+    <AssemblyName>Infrastructure.Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Infrastructure.Bin\Infrastructure.Interface.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Infrastructure.Bin\Infrastructure.Interface.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BarcodeReader.Interface\BarcodeConst.cs" />
+    <Compile Include="BarcodeReader.Interface\BarcodeReaderReceivedEventArgs.cs" />
+    <Compile Include="BarcodeReader.Interface\BarcodeReaderType.cs" />
+    <Compile Include="BarcodeReader.Interface\IBarcodeReader.cs" />
+    <Compile Include="BarcodeReader.Interface\INotifyBarcodeReaderReceived.cs" />
+    <Compile Include="ComPort.Interface\DataReceivedEventArgs.cs" />
+    <Compile Include="ComPort.Interface\IComPort.cs" />
+    <Compile Include="ComPort.Interface\IComPortCloneable.cs" />
+    <Compile Include="ComPort.Interface\INotifyDataReceived.cs" />
+    <Compile Include="ComPort.Interface\INotifyTcpClientAccepted.cs" />
+    <Compile Include="ComPort.Interface\SerialPortComPortConfigInfo.cs" />
+    <Compile Include="ComPort.Interface\TcpClientAcceptedEventArgs.cs" />
+    <Compile Include="ComPort.Interface\TcpClientComPortConfigInfo.cs" />
+    <Compile Include="ComPort.Interface\TcpClientInfo.cs" />
+    <Compile Include="ComPort.Interface\TcpListenerComPortConfigInfo.cs" />
+    <Compile Include="ComPort.Interface\TcpListenerComPortType.cs" />
+    <Compile Include="Config.Interface\AppConfigHelper.cs" />
+    <Compile Include="Config.Interface\ConfigConst.cs" />
+    <Compile Include="Config.Interface\IConfig.cs" />
+    <Compile Include="Common.Interface\ConnectionStateChangedEventArgs.cs" />
+    <Compile Include="Csv.Interface\ICsv.cs" />
+    <Compile Include="Common.Interface\INotifyConnectionStateChanged.cs" />
+    <Compile Include="Ioc.Interface\IDependencyResolver.cs" />
+    <Compile Include="Log.Interface\ILogger.cs" />
+    <Compile Include="Log.Interface\ILoggerFactory.cs" />
+    <Compile Include="Log.Interface\MessageWritedEventArgs.cs" />
+    <Compile Include="Log.Interface\MessageWritedEventHelper.cs" />
+    <Compile Include="Mapper.Interface\IMapper.cs" />
+    <Compile Include="MessageBus.Interface\IMessage.cs" />
+    <Compile Include="MessageBus.Interface\IMessageBus.cs" />
+    <Compile Include="MessageBus.Interface\IMessageHandlerWithNoReply.cs" />
+    <Compile Include="MessageBus.Interface\IMessageHandlerWithReply.cs" />
+    <Compile Include="MessageBus.Interface\IMessageReply.cs" />
+    <Compile Include="MessageBus.Interface\IMessageRequest.cs" />
+    <Compile Include="MessageBus.Interface\MessageReplyBase.cs" />
+    <Compile Include="MessageBus.Interface\MessageRequestBase.cs" />
+    <Compile Include="MessageBus.Interface\UnregisteredMessageException.cs" />
+    <Compile Include="Mvp.Interface\IPresenter.cs" />
+    <Compile Include="Mvp.Interface\IView.cs" />
+    <Compile Include="Plc.Interface\PlcOpcClientOptions.cs" />
+    <Compile Include="Plc.Interface\IPlc.cs" />
+    <Compile Include="Plc.Interface\IPlcModbus.cs" />
+    <Compile Include="Plc.Interface\IPlcOpc.cs" />
+    <Compile Include="Plc.Interface\PlcModbusTransportMode.cs" />
+    <Compile Include="Plc.Interface\PlcAddress.cs" />
+    <Compile Include="Plc.Interface\PlcAddressSortHelper.cs" />
+    <Compile Include="Plc.Interface\PlcAddressType.cs" />
+    <Compile Include="Plc.Interface\PlcComPortType.cs" />
+    <Compile Include="Plc.Interface\PlcConst.cs" />
+    <Compile Include="Plc.Interface\PlcExtensions.cs" />
+    <Compile Include="Plc.Interface\PlcProtocolName.cs" />
+    <Compile Include="PlcMonitor.Interface\EndValueReadEvent.cs" />
+    <Compile Include="PlcMonitor.Interface\EndValueReadEventStatus.cs" />
+    <Compile Include="PlcMonitor.Interface\EventBase.cs" />
+    <Compile Include="PlcMonitor.Interface\FromStartValueToEndValueReadEvent.cs" />
+    <Compile Include="PlcMonitor.Interface\IEvent.cs" />
+    <Compile Include="PlcMonitor.Interface\IEventStatus.cs" />
+    <Compile Include="PlcMonitor.Interface\IPlcMonitor.cs" />
+    <Compile Include="PlcMonitor.Interface\NotStartValueReadEvent.cs" />
+    <Compile Include="PlcMonitor.Interface\ValueReadChangedEvent.cs" />
+    <Compile Include="PlcMonitor.Interface\ValueReadEvent.cs" />
+    <Compile Include="Repository.Interface\AggregateRootBase.cs" />
+    <Compile Include="Repository.Interface\IAggregateRoot.cs" />
+    <Compile Include="Repository.Interface\IEntity.cs" />
+    <Compile Include="Repository.Interface\IQuery.cs" />
+    <Compile Include="Repository.Interface\IRepository.cs" />
+    <Compile Include="Repository.Interface\IUnitOfWork.cs" />
+    <Compile Include="Serialization.Interface\IConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ComPort.Interface\ComPortDemo.yml" />
+    <None Include="Plc.Interface\PlcAddressDemo.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Utils\Infrastructure.Utils.csproj">
+      <Project>{8938cded-6af9-4b4e-afe6-138fcca8526e}</Project>
+      <Name>Infrastructure.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

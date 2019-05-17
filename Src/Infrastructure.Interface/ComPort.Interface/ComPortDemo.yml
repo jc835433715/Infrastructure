@@ -1,0 +1,5 @@
+﻿---
+tcpClientComPort: {name: tcpClientComPort, localIPAddress: 127.0.0.1, localPort: 8080, remoteIPAddress: 192.168.1.1, remotePort: 8080, sendTimeout: 500, receiveTimeout: 500}
+tcpListenerComPort: {name: tcpListenerComPort, localIPAddress: 127.0.0.1, localPort: 8080, sendTimeout: 500, receiveTimeout: 500}
+serialPortComPort: {name: serialPortComPort, portName: COM1, baudRate: 9600, parity: Even, dataBits: 8, stopBits: One, sendTimeout: 500, receiveTimeout: 500}
+...

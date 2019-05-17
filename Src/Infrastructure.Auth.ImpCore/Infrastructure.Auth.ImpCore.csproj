@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Infrastructure.Bin\Auth</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Infrastructure.Bin\Auth</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AppData\AuthDb.db" />
+    <None Remove="AuthDb.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AppData\AuthDb.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Auth.Interface\Infrastructure.Auth.Interface.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Infrastructure.Auth.Shared\Infrastructure.Auth.Shared.projitems" Label="Shared" />
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY $(TargetDir)* ..\Infrastructure.Bin\  /S /Y" />
+  </Target>
+
+</Project>

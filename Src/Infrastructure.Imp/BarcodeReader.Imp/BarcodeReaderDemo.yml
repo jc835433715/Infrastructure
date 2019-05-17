@@ -1,0 +1,7 @@
+﻿---
+commandBarcodeReader: 
+    readCommand: "\x02LON\x03"
+    barcodeStart: "\x02"
+    barcodeEnd: "\x03"
+    timeout: 3
+...
