@@ -60,7 +60,13 @@ namespace Infrastructure.Plc.Factory
         /// <returns>PlcOpc对象</returns>
         public static IPlcOpc Create(string uriString, PlcOpcClientOptions plcOpcClientOptions = null)
         {
-            return new PlcOpcByOpcUaHelper(uriString, plcOpcClientOptions); ;
+            IPlcOpc result = default(IPlcOpc);
+
+            if (plcOpcClientOptions.PlcOpcImpType == PlcOpcImpType.HOpc) result = new PlcOpcByHOpc(uriString, plcOpcClientOptions);
+
+            if (plcOpcClientOptions.PlcOpcImpType == PlcOpcImpType.OpcUaHelper) result = new PlcOpcByOpcUaHelper(uriString, plcOpcClientOptions);
+
+            return result;
         }
 
         /// <summary>

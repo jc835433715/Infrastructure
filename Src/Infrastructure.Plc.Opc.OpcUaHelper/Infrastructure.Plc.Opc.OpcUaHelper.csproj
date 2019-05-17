@@ -7,8 +7,8 @@
     <ProjectGuid>{2F24CBF5-321E-437A-9A0B-9793F64D7C18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Infrastructure.Plc.Opc</RootNamespace>
-    <AssemblyName>Infrastructure.Plc.Opc</AssemblyName>
+    <RootNamespace>Infrastructure.Plc.Opc.OpcUaHelper</RootNamespace>
+    <AssemblyName>Infrastructure.Plc.Opc.OpcUaHelper</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

@@ -513,13 +513,21 @@
       <Project>{36697f15-d1f6-459a-9e39-a1841b22ed8c}</Project>
       <Name>Infrastructure.Plc.Melsec</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Modbus\Infrastructure.Plc.Modbus.csproj">
+      <Project>{1badafb1-1f0d-4af1-ad1f-0b15cd6d967e}</Project>
+      <Name>Infrastructure.Plc.Modbus</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Plc.Omron\Infrastructure.Plc.Omron.csproj">
       <Project>{19ed814d-d104-4428-9b8b-68506512ad5c}</Project>
       <Name>Infrastructure.Plc.Omron</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Plc.Opc\Infrastructure.Plc.Opc.csproj">
+    <ProjectReference Include="..\Infrastructure.Plc.Opc.HOpc\Infrastructure.Plc.Opc.HOpc.csproj">
+      <Project>{a5d6d51a-557e-446f-8888-f15162c6966f}</Project>
+      <Name>Infrastructure.Plc.Opc.HOpc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Opc.OpcUaHelper\Infrastructure.Plc.Opc.OpcUaHelper.csproj">
       <Project>{2f24cbf5-321e-437a-9a0b-9793f64d7c18}</Project>
-      <Name>Infrastructure.Plc.Opc</Name>
+      <Name>Infrastructure.Plc.Opc.OpcUaHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.PlcMonitor.Imp\Infrastructure.PlcMonitor.Imp.csproj">
       <Project>{1336e305-8aae-4672-affb-f89637495b59}</Project>

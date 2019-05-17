@@ -24,7 +24,7 @@ namespace Infrastructure.Plc.Opc
         {
             try
             {
-                client = new OpcUaClient();
+                client = new OpcUaClient() { OpcUaName = "NowFuture" };
 
                 if (plcOpcClientOptions != null
                     && !string.IsNullOrWhiteSpace(plcOpcClientOptions.UserName)

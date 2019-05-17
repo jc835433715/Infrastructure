@@ -62,3 +62,5 @@
 /Src/Infrastructure.Serialization.YamlDotNet/bin/Debug
 /Src/Infrastructure.Serialization.YamlDotNet/obj/Debug
 /Src/Infrastructure.Serialization.Factory/obj/Debug
+/Src/Infrastructure.Plc.Opc.HOpc/obj/Debug
+/Src/Infrastructure.Plc.Opc.OpcUaHelper/obj/Debug

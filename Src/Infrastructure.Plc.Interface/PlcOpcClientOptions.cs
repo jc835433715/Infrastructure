@@ -14,5 +14,10 @@
         /// 密码
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// PlcOpc实现类型
+        /// </summary>
+        public PlcOpcImpType PlcOpcImpType { get; set; }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="PlcExtensions.cs" />
     <Compile Include="PlcModbusTransportMode.cs" />
     <Compile Include="PlcOpcClientOptions.cs" />
+    <Compile Include="PlcOpcImpType.cs" />
     <Compile Include="PlcProtocolName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
