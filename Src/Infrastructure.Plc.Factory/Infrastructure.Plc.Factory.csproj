@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F8871FC-9284-41AF-9CE3-E699775AD751}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infrastructure.Plc.Factory</RootNamespace>
+    <AssemblyName>Infrastructure.Plc.Factory</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Infrastructure.Bin\Infrastructure.Plc.Factory.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Infrastructure.Bin\Infrastructure.Plc.Factory.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlcAdapter.cs" />
+    <Compile Include="PlcFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Common.Interface\Infrastructure.Common.Interface.csproj">
+      <Project>{1eec4590-ae72-47b2-acfd-6b09aa61e432}</Project>
+      <Name>Infrastructure.Common.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Imp\Infrastructure.ComPort.Imp.csproj">
+      <Project>{2095f71e-67a9-4fa6-908a-ec4897638208}</Project>
+      <Name>Infrastructure.ComPort.Imp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Interface\Infrastructure.ComPort.Interface.csproj">
+      <Project>{b802e23d-0875-4869-bf83-072ec582ad66}</Project>
+      <Name>Infrastructure.ComPort.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log.Interface\Infrastructure.Log.Interface.csproj">
+      <Project>{c09854d4-cc06-4fb6-aabf-a674bbef7174}</Project>
+      <Name>Infrastructure.Log.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Common\Infrastructure.Plc.Common.csproj">
+      <Project>{8d0a3c4f-040d-494a-9340-57921b6c92e2}</Project>
+      <Name>Infrastructure.Plc.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Interface\Infrastructure.Plc.Interface.csproj">
+      <Project>{048d3936-0c80-48a0-96bd-1603fd9ab0ee}</Project>
+      <Name>Infrastructure.Plc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Keyence\Infrastructure.Plc.Keyence.csproj">
+      <Project>{c5e0ac39-e433-410b-bb5a-3bb5c6340583}</Project>
+      <Name>Infrastructure.Plc.Keyence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.ManualSimulator\Infrastructure.Plc.ManualSimulator.csproj">
+      <Project>{ce4020fd-93f4-49ce-85fd-ede76bf6b7c5}</Project>
+      <Name>Infrastructure.Plc.ManualSimulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Melsec\Infrastructure.Plc.Melsec.csproj">
+      <Project>{36697f15-d1f6-459a-9e39-a1841b22ed8c}</Project>
+      <Name>Infrastructure.Plc.Melsec</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Modbus\Infrastructure.Plc.Modbus.csproj">
+      <Project>{1badafb1-1f0d-4af1-ad1f-0b15cd6d967e}</Project>
+      <Name>Infrastructure.Plc.Modbus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Omron\Infrastructure.Plc.Omron.csproj">
+      <Project>{19ed814d-d104-4428-9b8b-68506512ad5c}</Project>
+      <Name>Infrastructure.Plc.Omron</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Opc\Infrastructure.Plc.Opc.csproj">
+      <Project>{2f24cbf5-321e-437a-9a0b-9793f64d7c18}</Project>
+      <Name>Infrastructure.Plc.Opc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

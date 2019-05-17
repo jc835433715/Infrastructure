@@ -393,17 +393,165 @@
       <Project>{73a87d9e-b839-4a3d-b138-aeb32f334a93}</Project>
       <Name>Infrastructure.Auth.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Factory\Infrastructure.Factory.csproj">
-      <Project>{334076b6-7b51-4556-99d7-8a1307488c8f}</Project>
-      <Name>Infrastructure.Factory</Name>
+    <ProjectReference Include="..\Infrastructure.BarcodeReader.Imp\Infrastructure.BarcodeReader.Imp.csproj">
+      <Project>{ff6bc696-8c3a-4d50-84bd-39b0bb747761}</Project>
+      <Name>Infrastructure.BarcodeReader.Imp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Imp\Infrastructure.Imp.csproj">
-      <Project>{3dd4ea5b-0bb6-42ad-9b9d-a9de508cbfa7}</Project>
-      <Name>Infrastructure.Imp</Name>
+    <ProjectReference Include="..\Infrastructure.BarcodeReader.Interface\Infrastructure.BarcodeReader.Interface.csproj">
+      <Project>{9ae8f82f-2679-4c14-8c0a-ce615c535c33}</Project>
+      <Name>Infrastructure.BarcodeReader.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Interface\Infrastructure.Interface.csproj">
-      <Project>{87efc0d7-6f89-4fe1-9a04-57d547ffd199}</Project>
-      <Name>Infrastructure.Interface</Name>
+    <ProjectReference Include="..\Infrastructure.Common.Interface\Infrastructure.Common.Interface.csproj">
+      <Project>{1eec4590-ae72-47b2-acfd-6b09aa61e432}</Project>
+      <Name>Infrastructure.Common.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Factory\Infrastructure.ComPort.Factory.csproj">
+      <Project>{e49e9129-6a38-4f88-989d-5792d2cf1008}</Project>
+      <Name>Infrastructure.ComPort.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Imp\Infrastructure.ComPort.Imp.csproj">
+      <Project>{2095f71e-67a9-4fa6-908a-ec4897638208}</Project>
+      <Name>Infrastructure.ComPort.Imp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Interface\Infrastructure.ComPort.Interface.csproj">
+      <Project>{b802e23d-0875-4869-bf83-072ec582ad66}</Project>
+      <Name>Infrastructure.ComPort.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Config.Factory\Infrastructure.Config.Factory.csproj">
+      <Project>{8b566d43-fd5f-4d2a-87bd-d9d79fb734cf}</Project>
+      <Name>Infrastructure.Config.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Config.Interface\Infrastructure.Config.Interface.csproj">
+      <Project>{e8c85c8b-0925-4f49-b152-1b15926c00e6}</Project>
+      <Name>Infrastructure.Config.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Config.Yaml\Infrastructure.Config.Yaml.csproj">
+      <Project>{30a171b3-9806-4bd6-b0bc-ff48b3b3a92a}</Project>
+      <Name>Infrastructure.Config.Yaml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Csv.CsvHelper\Infrastructure.Csv.CsvHelper.csproj">
+      <Project>{b444712c-12fb-4c29-9b7b-7a24dc19c77d}</Project>
+      <Name>Infrastructure.Csv.CsvHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Csv.Imp\Infrastructure.Csv.Imp.csproj">
+      <Project>{bf832ac2-449e-478f-bbf1-1de877aa866b}</Project>
+      <Name>Infrastructure.Csv.Imp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Csv.Interface\Infrastructure.Csv.Interface.csproj">
+      <Project>{44514487-9f73-4c8c-afd6-e01ad6e2d8bb}</Project>
+      <Name>Infrastructure.Csv.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Ioc.Factory\Infrastructure.Ioc.Factory.csproj">
+      <Project>{274552ad-a75f-4007-8b31-9c71b7ae3099}</Project>
+      <Name>Infrastructure.Ioc.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Ioc.Interface\Infrastructure.Ioc.Interface.csproj">
+      <Project>{def33477-ee47-4598-982c-e918fb20d00d}</Project>
+      <Name>Infrastructure.Ioc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Ioc.Ninject\Infrastructure.Ioc.Ninject.csproj">
+      <Project>{2d2a5947-a5e0-49f4-9ad2-d660cf159435}</Project>
+      <Name>Infrastructure.Ioc.Ninject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log.Factory\Infrastructure.Log.Factory.csproj">
+      <Project>{9330c391-17a1-4a2a-9565-162ca9e62915}</Project>
+      <Name>Infrastructure.Log.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log.Interface\Infrastructure.Log.Interface.csproj">
+      <Project>{c09854d4-cc06-4fb6-aabf-a674bbef7174}</Project>
+      <Name>Infrastructure.Log.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log.NLog\Infrastructure.Log.NLog.csproj">
+      <Project>{21a986a9-e975-42be-a8df-4d1ee96dde50}</Project>
+      <Name>Infrastructure.Log.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Mapper.AutoMapper\Infrastructure.Mapper.AutoMapper.csproj">
+      <Project>{19f4b87a-5a39-446f-acae-02bd15525720}</Project>
+      <Name>Infrastructure.Mapper.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Mapper.Factory\Infrastructure.Mapper.Factory.csproj">
+      <Project>{7ad43aca-4c17-4fb7-9398-069e5562c0b9}</Project>
+      <Name>Infrastructure.Mapper.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Mapper.Interface\Infrastructure.Mapper.Interface.csproj">
+      <Project>{75ec694b-d41b-4c8c-8256-a741e2a00b74}</Project>
+      <Name>Infrastructure.Mapper.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.MessageBus.Imp\Infrastructure.MessageBus.Imp.csproj">
+      <Project>{79944a47-eb61-40e4-b416-22a5e6d3fb09}</Project>
+      <Name>Infrastructure.MessageBus.Imp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.MessageBus.Interface\Infrastructure.MessageBus.Interface.csproj">
+      <Project>{c7a3bead-5ef7-476a-885f-c4197380a4bf}</Project>
+      <Name>Infrastructure.MessageBus.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Mvp.Interface\Infrastructure.Mvp.Interface.csproj">
+      <Project>{471d54ae-f1ef-4860-a170-6b1e30ed3624}</Project>
+      <Name>Infrastructure.Mvp.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Common\Infrastructure.Plc.Common.csproj">
+      <Project>{8d0a3c4f-040d-494a-9340-57921b6c92e2}</Project>
+      <Name>Infrastructure.Plc.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Factory\Infrastructure.Plc.Factory.csproj">
+      <Project>{5f8871fc-9284-41af-9ce3-e699775ad751}</Project>
+      <Name>Infrastructure.Plc.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Interface\Infrastructure.Plc.Interface.csproj">
+      <Project>{048d3936-0c80-48a0-96bd-1603fd9ab0ee}</Project>
+      <Name>Infrastructure.Plc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Keyence\Infrastructure.Plc.Keyence.csproj">
+      <Project>{c5e0ac39-e433-410b-bb5a-3bb5c6340583}</Project>
+      <Name>Infrastructure.Plc.Keyence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.ManualSimulator\Infrastructure.Plc.ManualSimulator.csproj">
+      <Project>{ce4020fd-93f4-49ce-85fd-ede76bf6b7c5}</Project>
+      <Name>Infrastructure.Plc.ManualSimulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Melsec\Infrastructure.Plc.Melsec.csproj">
+      <Project>{36697f15-d1f6-459a-9e39-a1841b22ed8c}</Project>
+      <Name>Infrastructure.Plc.Melsec</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Omron\Infrastructure.Plc.Omron.csproj">
+      <Project>{19ed814d-d104-4428-9b8b-68506512ad5c}</Project>
+      <Name>Infrastructure.Plc.Omron</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Opc\Infrastructure.Plc.Opc.csproj">
+      <Project>{2f24cbf5-321e-437a-9a0b-9793f64d7c18}</Project>
+      <Name>Infrastructure.Plc.Opc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.PlcMonitor.Imp\Infrastructure.PlcMonitor.Imp.csproj">
+      <Project>{1336e305-8aae-4672-affb-f89637495b59}</Project>
+      <Name>Infrastructure.PlcMonitor.Imp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.PlcMonitor.Interface\Infrastructure.PlcMonitor.Interface.csproj">
+      <Project>{c065b2f1-7f1e-4101-9805-7d559a828935}</Project>
+      <Name>Infrastructure.PlcMonitor.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Repository.EF\Infrastructure.Repository.EF.csproj">
+      <Project>{0fc83644-bf87-49d0-98cd-99b1a4416aa9}</Project>
+      <Name>Infrastructure.Repository.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Repository.Interface\Infrastructure.Repository.Interface.csproj">
+      <Project>{6650f5ba-d87e-4c20-9ac5-d53afcb200de}</Project>
+      <Name>Infrastructure.Repository.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.Factory\Infrastructure.Serialization.Factory.csproj">
+      <Project>{4cb10f4f-1e01-415d-ac25-61de69b9aecd}</Project>
+      <Name>Infrastructure.Serialization.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.Interface\Infrastructure.Serialization.Interface.csproj">
+      <Project>{3aec6c47-1d00-4d3b-8272-b9039a679219}</Project>
+      <Name>Infrastructure.Serialization.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.Newtonsoft\Infrastructure.Serialization.Newtonsoft.csproj">
+      <Project>{b897db13-1b3e-45e7-a609-e77d47716bcb}</Project>
+      <Name>Infrastructure.Serialization.Newtonsoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.YamlDotNet\Infrastructure.Serialization.YamlDotNet.csproj">
+      <Project>{e3e49fc0-8fa3-44f9-9e1a-d4d29d4ab291}</Project>
+      <Name>Infrastructure.Serialization.YamlDotNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.UI\Infrastructure.UI.csproj">
       <Project>{6775fe46-d268-4e56-a1fd-ca5578e339a7}</Project>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF6BC696-8C3A-4D50-84BD-39B0BB747761}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infrastructure.BarcodeReader.Imp</RootNamespace>
+    <AssemblyName>Infrastructure.BarcodeReader.Imp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>..\Infrastructure.Bin\</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Infrastructure.Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>..\Infrastructure.Bin\</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BarcodeReaderBase.cs" />
+    <Compile Include="BarcodeReaderConfigInfo.cs" />
+    <Compile Include="CommandBarcodeReader.cs" />
+    <Compile Include="PlcBarcodeReader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIBarcodeReader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIBarcodeReader.Designer.cs">
+      <DependentUpon>UIBarcodeReader.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BarcodeReaderDemo.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UIBarcodeReader.resx">
+      <DependentUpon>UIBarcodeReader.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.BarcodeReader.Interface\Infrastructure.BarcodeReader.Interface.csproj">
+      <Project>{9ae8f82f-2679-4c14-8c0a-ce615c535c33}</Project>
+      <Name>Infrastructure.BarcodeReader.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Common.Interface\Infrastructure.Common.Interface.csproj">
+      <Project>{1eec4590-ae72-47b2-acfd-6b09aa61e432}</Project>
+      <Name>Infrastructure.Common.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.ComPort.Interface\Infrastructure.ComPort.Interface.csproj">
+      <Project>{b802e23d-0875-4869-bf83-072ec582ad66}</Project>
+      <Name>Infrastructure.ComPort.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Config.Interface\Infrastructure.Config.Interface.csproj">
+      <Project>{e8c85c8b-0925-4f49-b152-1b15926c00e6}</Project>
+      <Name>Infrastructure.Config.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Log.Interface\Infrastructure.Log.Interface.csproj">
+      <Project>{c09854d4-cc06-4fb6-aabf-a674bbef7174}</Project>
+      <Name>Infrastructure.Log.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Plc.Interface\Infrastructure.Plc.Interface.csproj">
+      <Project>{048d3936-0c80-48a0-96bd-1603fd9ab0ee}</Project>
+      <Name>Infrastructure.Plc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.Interface\Infrastructure.Serialization.Interface.csproj">
+      <Project>{3aec6c47-1d00-4d3b-8272-b9039a679219}</Project>
+      <Name>Infrastructure.Serialization.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Serialization.Newtonsoft\Infrastructure.Serialization.Newtonsoft.csproj">
+      <Project>{b897db13-1b3e-45e7-a609-e77d47716bcb}</Project>
+      <Name>Infrastructure.Serialization.Newtonsoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.UI\Infrastructure.UI.csproj">
+      <Project>{6775fe46-d268-4e56-a1fd-ca5578e339a7}</Project>
+      <Name>Infrastructure.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Utils\Infrastructure.Utils.csproj">
+      <Project>{8938cded-6af9-4b4e-afe6-138fcca8526e}</Project>
+      <Name>Infrastructure.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
