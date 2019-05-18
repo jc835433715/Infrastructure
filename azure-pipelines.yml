@@ -28,6 +28,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    vsVersion: latest
 
 - task: VSTest@2
   inputs:
@@ -49,7 +50,7 @@ steps:
   inputs:
     SourceFolder: Src/Infrastructure.Bin
     Contents: '**\*'
-    TargetFolder: '$(build.artifactstagingdirectory)/Infrastructure.Bin'  
+    TargetFolder: '$(build.artifactstagingdirectory)/Infrastructure.Bin'
 
 - task: NuGetCommand@2
   inputs:
