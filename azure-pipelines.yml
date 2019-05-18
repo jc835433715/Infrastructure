@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'Hosted VS2017'
 
 variables:
   solution: '**/*.sln'
@@ -16,6 +16,8 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@0
+  inputs:
+     checkLatest: true
 
 - task: NuGetCommand@2
   inputs:
@@ -31,3 +33,43 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    testAssemblyVer2: |
+     **\Infrastructure.UT.Bin\Infrastructure.UT.dll
+     !**\obj\**
+    runTestsInIsolation: true
+    codeCoverageEnabled: true
+
+- task: PublishSymbols@2
+  inputs:
+    SearchPattern: '**\Infrastructure.Bin\*.pdb'
+    PublishSymbols: false
+  continueOnError: true
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: Src/Infrastructure.Bin
+    Contents: '**\*'
+    TargetFolder: '$(build.artifactstagingdirectory)/Infrastructure.Bin'  
+
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    vstsFeed: packagesToPack
+    packDestination: '$(Build.ArtifactStagingDirectory)/Infrastructure.Bin/Infrastructure.Package'
+    includeSymbols: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: 'Infrastructure-$(Build.BuildNumber)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    feedsToUse: 'select'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/Infrastructure.Bin/Infrastructure.Package/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: Infrastructure.Package
+    allowPackageConflicts: true
+    versioningScheme: 'off'
+
