@@ -119,6 +119,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Plc.Opc.OpcU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Plc.Opc.HOpc", "Infrastructure.Plc.Opc.HOpc\Infrastructure.Plc.Opc.HOpc.csproj", "{A5D6D51A-557E-446F-8888-F15162C6966F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Ioc.Autofac", "Infrastructure.Ioc.Autofac\Infrastructure.Ioc.Autofac.csproj", "{968AB37B-BF16-42F4-B69A-A7EE11CC23D7}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Infrastructure.Auth.Shared\Infrastructure.Auth.Shared.projitems*{8109ef7b-5eb5-44e3-983f-0f9041f81757}*SharedItemsImports = 4
@@ -325,6 +327,10 @@ Global
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968AB37B-BF16-42F4-B69A-A7EE11CC23D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968AB37B-BF16-42F4-B69A-A7EE11CC23D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968AB37B-BF16-42F4-B69A-A7EE11CC23D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968AB37B-BF16-42F4-B69A-A7EE11CC23D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -364,6 +370,7 @@ Global
 		{1BADAFB1-1F0D-4AF1-AD1F-0B15CD6D967E} = {E46F4399-0B56-4607-9341-97CA4F9CE668}
 		{2F24CBF5-321E-437A-9A0B-9793F64D7C18} = {E46F4399-0B56-4607-9341-97CA4F9CE668}
 		{A5D6D51A-557E-446F-8888-F15162C6966F} = {E46F4399-0B56-4607-9341-97CA4F9CE668}
+		{968AB37B-BF16-42F4-B69A-A7EE11CC23D7} = {61911905-6408-4EDE-9F77-A4F3B5EAF9B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {146EBDF7-93C2-43B7-91CA-152D336CC3E2}

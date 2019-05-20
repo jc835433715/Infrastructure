@@ -64,3 +64,4 @@
 /Src/Infrastructure.Serialization.Factory/obj/Debug
 /Src/Infrastructure.Plc.Opc.HOpc/obj/Debug
 /Src/Infrastructure.Plc.Opc.OpcUaHelper/obj/Debug
+/Src/Infrastructure.Ioc.Autofac/obj/Debug
