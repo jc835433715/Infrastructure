@@ -9,18 +9,6 @@ namespace Infrastructure.Ioc.Interface
     public interface IDependencyResolver
     {
         /// <summary>
-        /// 初始化
-        /// </summary>
-        /// <param name="dependencyConfigAssemblyStrings">依赖注入配置程序集的长格式</param>
-        void Initialize(IEnumerable<string> dependencyConfigAssemblyStrings);
-
-        /// <summary>
-        /// 初始化
-        /// <param name="dependencyConfig">继承DependencyConfigBase的对象</param>
-        /// </summary>
-        void InitializeForUT(object dependencyConfig);
-
-        /// <summary>
         /// 获取服务对象
         /// </summary>
         /// <typeparam name="T">服务对象类型</typeparam>

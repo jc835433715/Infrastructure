@@ -15,20 +15,20 @@ namespace Infrastructure.Ioc.Ninject.Tests
         {
             this.dependencyResolver = new NinjectDependencyResolver();
         }
+
         [Test, Order(0)]
         public void InitializeForUT()
         {
-            dependencyResolver.InitializeForUT(new DependencyConfig());
+            this.dependencyResolver = new NinjectDependencyResolver(new DependencyConfig(), null);
         }
 
         [Test]
         public void InitializeTest()
         {
-            using (var dependencyResolver = new NinjectDependencyResolver())
+            using (var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.UT" }))
             {
                 ILogger logger = null;
 
-                dependencyResolver.Initialize(new string[] { "Infrastructure.UT" });
                 logger = dependencyResolver.GetService<ILogger>(LoggerType.File.ToString());
 
                 Assert.IsInstanceOf<FileLogger>(logger);

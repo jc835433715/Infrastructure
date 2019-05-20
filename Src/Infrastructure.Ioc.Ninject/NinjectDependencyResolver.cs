@@ -10,30 +10,28 @@ namespace Infrastructure.Ioc.Ninject
 {
     public class NinjectDependencyResolver : IDependencyResolver, IDisposable
     {
-        public NinjectDependencyResolver(object kernel = null) => this.kernel = (kernel as IKernel) ?? new StandardKernel();
-
-        public void Initialize(IEnumerable<string> dependencyConfigAssemblyStrings)
+        public NinjectDependencyResolver(object kernel = null)
         {
-            var tasks = new List<Task>();
-
-            foreach (var dependencyConfigAssemblyString in dependencyConfigAssemblyStrings)
-            {
-                var temp = dependencyConfigAssemblyString;
-
-                tasks.Add(Task.Factory.StartNew(() =>
-                {
-                    Assembly dependencyConfigAssembly = Assembly.Load(temp);
-                    List<DependencyConfigBase> dependencyConfigList = GetAllNinjectModule(dependencyConfigAssembly);
-
-                    dependencyConfigList.ForEach(e => e.Load(kernel));
-
-                }, TaskCreationOptions.LongRunning));
-            }
-
-            Task.WaitAll(tasks.ToArray());
+            this.kernel = (kernel as IKernel) ?? new StandardKernel();
         }
 
-        public void InitializeForUT(object dependencyConfig) => (dependencyConfig as DependencyConfigBase).Load(kernel);
+        public NinjectDependencyResolver(IEnumerable<string> dependencyConfigAssemblyStrings, IEnumerable<string> dependencyConfigNameSpaceStrings = null, object kernel = null)
+            : this(kernel)
+        {
+            foreach (var dependencyConfigAssemblyString in dependencyConfigAssemblyStrings)
+            {
+                Assembly dependencyConfigAssembly = Assembly.Load(dependencyConfigAssemblyString);
+                List<DependencyConfigBase> dependencyConfigList = GetAllNinjectModule(dependencyConfigAssembly, dependencyConfigNameSpaceStrings);
+
+                dependencyConfigList.ForEach(e => e.Load(this.kernel));
+            }
+        }
+
+        public NinjectDependencyResolver(object dependencyConfig, object kernel = null)
+            : this(kernel)
+        {
+            (dependencyConfig as DependencyConfigBase).Load(this.kernel);
+        }
 
         public T GetService<T>(string name = null)
         {
@@ -65,10 +63,10 @@ namespace Infrastructure.Ioc.Ninject
             return new Lazy<IEnumerable<T>>((Func<IEnumerable<T>>)(() => this.GetServices<T>(name)));
         }
 
-        private List<DependencyConfigBase> GetAllNinjectModule(Assembly dependencyConfigAssembly)
+        private List<DependencyConfigBase> GetAllNinjectModule(Assembly dependencyConfigAssembly, IEnumerable<string> dependencyConfigNameSpaceStrings)
         {
             return (from t in dependencyConfigAssembly.GetTypes()
-                    where t.BaseType == typeof(DependencyConfigBase)
+                    where t.BaseType == typeof(DependencyConfigBase) && (dependencyConfigNameSpaceStrings == null || dependencyConfigNameSpaceStrings.Any(e => t.FullName.StartsWith(e)))
                     select dependencyConfigAssembly.CreateInstance(t.FullName) as DependencyConfigBase).ToList();
         }
 

@@ -33,12 +33,7 @@ namespace Infrastructure.Mapper.Factory
 
             mapper = new AutoMapperImp(mapperConfigFactory, isAssertConfigurationIsValid);
         }
-
-        /// <summary>
-        /// 当前映射器
-        /// </summary>
-        public static IMapper CurrentMapper => mapper;
-
+        
         /// <summary>
         /// 获取映射器
         /// </summary>

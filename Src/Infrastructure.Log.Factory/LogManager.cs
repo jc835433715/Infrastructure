@@ -41,16 +41,7 @@ namespace Infrastructure.Log.Factory
         {
             return loggerFactory.GetLogger(name);
         }
-
-        /// <summary>
-        /// 设置日志记录器工厂
-        /// </summary>
-        /// <param name="loggerFactory">日志记录器工厂</param>
-        public static void SetLoggerFactory(ILoggerFactory loggerFactory)
-        {
-            LogManager.loggerFactory = loggerFactory;
-        }
-
+        
         /// <summary>
         /// 清理日志
         /// </summary>

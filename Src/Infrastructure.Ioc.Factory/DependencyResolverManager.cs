@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Ioc.Interface;
 using Infrastructure.Ioc.Ninject;
+using System.Collections.Generic;
 
 namespace Infrastructure.Ioc.Factory
 {
@@ -8,29 +9,27 @@ namespace Infrastructure.Ioc.Factory
     /// </summary>
     public static class DependencyResolverManager
     {
-        static DependencyResolverManager()
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="dependencyConfigAssemblyStrings">依赖注入配置程序集</param>
+        /// <param name="dependencyConfigNameSpaceStrings">依赖注入配置程序集命名空间</param>
+        /// <param name="kernel">Ninject的kernel</param>
+        public static void Initialize(IEnumerable<string> dependencyConfigAssemblyStrings, IEnumerable<string> dependencyConfigNameSpaceStrings = null, object kernel = null)
         {
-            dependencyResolver = new NinjectDependencyResolver();
+            dependencyResolver = new NinjectDependencyResolver(dependencyConfigAssemblyStrings, dependencyConfigNameSpaceStrings, kernel);
         }
 
         /// <summary>
-        /// 设置Ninject的kernel
+        /// 初始化
+        /// <param name="dependencyConfig">继承DependencyConfigBase的对象</param>
+        /// <param name="kernel">Ninject的kernel</param>
         /// </summary>
-        /// <param name="kernel">kernel</param>
-        public static void SetKernel(object kernel)
+        public static void InitializeForUT(object dependencyConfig, object kernel = null)
         {
-            dependencyResolver = new NinjectDependencyResolver(kernel);
+            dependencyResolver = new NinjectDependencyResolver(dependencyConfig, kernel);
         }
-
-        /// <summary>
-        /// 设置依赖注入解析器
-        /// </summary>
-        /// <param name="dependencyResolver"></param>
-        public static void SetDependencyResolver(IDependencyResolver dependencyResolver)
-        {
-            DependencyResolverManager.dependencyResolver = dependencyResolver;
-        }
-
+        
         /// <summary>
         /// 获取依赖注入解析器
         /// </summary>
