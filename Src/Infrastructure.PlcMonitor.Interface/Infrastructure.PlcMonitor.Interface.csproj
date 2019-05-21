@@ -56,6 +56,10 @@
     <Compile Include="ValueReadEvent.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Common.Interface\Infrastructure.Common.Interface.csproj">
+      <Project>{1eec4590-ae72-47b2-acfd-6b09aa61e432}</Project>
+      <Name>Infrastructure.Common.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Plc.Interface\Infrastructure.Plc.Interface.csproj">
       <Project>{048d3936-0c80-48a0-96bd-1603fd9ab0ee}</Project>
       <Name>Infrastructure.Plc.Interface</Name>

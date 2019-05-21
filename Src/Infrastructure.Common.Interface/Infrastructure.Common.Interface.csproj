@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionStateChangedEventArgs.cs" />
+    <Compile Include="IDataChannel.cs" />
     <Compile Include="INotifyConnectionStateChanged.cs" />
+    <Compile Include="DataAddress.cs" />
+    <Compile Include="DataAddressType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +59,9 @@
       <Project>{8938cded-6af9-4b4e-afe6-138fcca8526e}</Project>
       <Name>Infrastructure.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataAddress.yml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

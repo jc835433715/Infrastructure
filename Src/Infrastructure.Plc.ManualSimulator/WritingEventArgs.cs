@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System;
 using System.Collections.Generic;
 
@@ -8,11 +9,11 @@ namespace Infrastructure.Plc.ManualSimulator
     {
         public WritingEventArgs()
         {
-            this.Address = PlcAddress.Empty;
+            this.Address = DataAddress.Empty;
             this.Values = new List<object>();
         }
 
-        public PlcAddress Address { get; set; }
+        public DataAddress Address { get; set; }
 
         public ICollection<object> Values { get; set; }
     }

@@ -9,7 +9,7 @@ namespace Infrastructure.BarcodeReader.Imp
 {
     public class PlcBarcodeReader : BarcodeReaderBase
     {
-        public PlcBarcodeReader(string name, IPlc plc, PlcAddress address, string regex = null)
+        public PlcBarcodeReader(string name, IPlc plc, DataAddress address, string regex = null)
             : base(name)
         {
             this.plc = plc;
@@ -51,7 +51,7 @@ namespace Infrastructure.BarcodeReader.Imp
         }
 
         private readonly IPlc plc;
-        private readonly PlcAddress address;
+        private readonly DataAddress address;
         private readonly Regex regex;
         private readonly ConnectionStateChangedEventManager connectionStateChangedEventManager;
     }

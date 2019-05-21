@@ -31,10 +31,10 @@ namespace Infrastructure.Plc.Keyence
             {
                 if (!comPort.IsConnected) comPort.Open(false);
 
-                this.ReadSingle<short>(new PlcAddress()
+                (this).ReadSingle<short>(new DataAddress()
                 {
                     Name = "基恩士通讯探测",
-                    Type = PlcAddressType.Short,
+                    Type = DataAddressType.Short,
                     Offset = 0,
                     Value = "DM0"
                 });
@@ -45,9 +45,9 @@ namespace Infrastructure.Plc.Keyence
             }
         }
 
-        public IEnumerable<TValue> Read<TValue>(PlcAddress address)
+        public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
 
             var command = ProtocolUpperLinkCommand.GetReadCommand(address);
             byte[] response = { };
@@ -67,9 +67,9 @@ namespace Infrastructure.Plc.Keyence
             return GetValues<TValue>(address, response);
         }
 
-        public void Write<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
             if (values == null || !values.Any()) throw new ApplicationException($"参数异常，values为null或空");
 
             var command = ProtocolUpperLinkCommand.GetWriteCommand(address, values);
@@ -93,7 +93,7 @@ namespace Infrastructure.Plc.Keyence
             return Encoding.ASCII.GetString(response);
         }
 
-        private TValue[] GetValues<TValue>(PlcAddress address, byte[] response)
+        private TValue[] GetValues<TValue>(DataAddress address, byte[] response)
         {
             var result = new List<TValue>();
             var valueType = typeof(TValue);
@@ -106,14 +106,14 @@ namespace Infrastructure.Plc.Keyence
                 {
                     switch (address.Type)
                     {
-                        case PlcAddressType.Boolean:
+                        case DataAddressType.Boolean:
                             {
                                 var value = (TValue)Convert.ChangeType(datas.Single() == "1", valueType);
 
                                 result.Add(value);
                             }
                             break;
-                        case PlcAddressType.Short:
+                        case DataAddressType.Short:
                             {
                                 datas.ForEach(e =>
                                 {
@@ -123,7 +123,7 @@ namespace Infrastructure.Plc.Keyence
                                 });
                             }
                             break;
-                        case PlcAddressType.Ushort:
+                        case DataAddressType.Ushort:
                             {
                                 datas.ForEach(e =>
                                 {
@@ -133,7 +133,7 @@ namespace Infrastructure.Plc.Keyence
                                 });
                             }
                             break;
-                        case PlcAddressType.Int:
+                        case DataAddressType.Int:
                             {
                                 datas.ForEach(e =>
                                 {
@@ -143,7 +143,7 @@ namespace Infrastructure.Plc.Keyence
                                 });
                             }
                             break;
-                        case PlcAddressType.Float:
+                        case DataAddressType.Float:
                             {
                                 var bytes = new List<byte>();
 
@@ -169,7 +169,7 @@ namespace Infrastructure.Plc.Keyence
                                 }
                             }
                             break;
-                        case PlcAddressType.String:
+                        case DataAddressType.String:
                             {
                                 var value = (TValue)Convert.ChangeType(string.Empty, valueType);
                                 var bytes = new List<byte>();

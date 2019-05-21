@@ -1,4 +1,5 @@
-﻿using Infrastructure.Log.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Log.Interface;
 using Infrastructure.Plc.Interface;
 using Infrastructure.PlcMonitor.Interface;
 using Infrastructure.Utils;
@@ -188,7 +189,7 @@ namespace Infrastructure.PlcMonitor.Imp
         private List<TaskInfo> ProduceTaskAction(IPlc plc, List<EventInfo<TValue>> eventInfoes)
         {
             var result = new List<TaskInfo>();
-            List<Tuple<PlcAddress, TValue>> values = ScanAddress(plc, eventInfoes);
+            List<Tuple<DataAddress, TValue>> values = ScanAddress(plc, eventInfoes);
 
             eventInfoes.ForEach(eventInfo =>
             {
@@ -229,9 +230,9 @@ namespace Infrastructure.PlcMonitor.Imp
             }
         }
 
-        private List<Tuple<PlcAddress, TValue>> ScanAddress(IPlc plc, List<EventInfo<TValue>> eventInfoes)
+        private List<Tuple<DataAddress, TValue>> ScanAddress(IPlc plc, List<EventInfo<TValue>> eventInfoes)
         {
-            var result = new List<Tuple<PlcAddress, TValue>>();
+            var result = new List<Tuple<DataAddress, TValue>>();
             SortResult sortResult = InMemoryCache.GetOrAdd<SortResult>(eventInfoes.GetHashCode().ToString(), key =>
             {
                 var r = new SortResult();
@@ -258,7 +259,7 @@ namespace Infrastructure.PlcMonitor.Imp
 
                 for (var index = 0; index < values.Count(); index++)
                 {
-                    result.Add(new Tuple<PlcAddress, TValue>(addressSegment.AllAddressesByDes[index], values[index]));
+                    result.Add(new Tuple<DataAddress, TValue>(addressSegment.AllAddressesByDes[index], values[index]));
                 }
             });
 
@@ -266,7 +267,7 @@ namespace Infrastructure.PlcMonitor.Imp
             {
                 var value = plc.ReadSingle<TValue>(address);
 
-                result.Add(new Tuple<PlcAddress, TValue>(address, value));
+                result.Add(new Tuple<DataAddress, TValue>(address, value));
             });
 
             return result;

@@ -1,4 +1,5 @@
-﻿using Infrastructure.ComPort.Imp.Net;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.ComPort.Imp.Net;
 using Infrastructure.ComPort.Interface;
 using Infrastructure.Plc.Interface;
 using NSubstitute;
@@ -54,16 +55,16 @@ namespace Infrastructure.Plc.Omron.Tests
             protocolFinsTcp1.Initialize();
             protocolFinsTcp2.Initialize();
 
-            protocolFinsTcp1.Write<short>(new PlcAddress()
+            protocolFinsTcp1.Write<short>(new DataAddress()
             {
-                Type = PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = 0,
                 Value = "D8816"
             }, new short[] { 2 });
 
-            protocolFinsTcp2.Write<short>(new PlcAddress()
+            protocolFinsTcp2.Write<short>(new DataAddress()
             {
-                Type = PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = 0,
                 Value = "D8816"
             }, new short[] { 3 });
@@ -112,10 +113,10 @@ namespace Infrastructure.Plc.Omron.Tests
             }
             );
 
-            values = protocolFinsTcp.Read<int>(new Interface.PlcAddress()
+            values = protocolFinsTcp.Read<int>(new DataAddress()
             {
                 Value = "D1234",
-                Type = Interface.PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = 0
             }).ToArray();
 
@@ -146,10 +147,10 @@ namespace Infrastructure.Plc.Omron.Tests
                 }
             );
 
-            values = protocolFinsTcp.Read<short>(new Interface.PlcAddress()
+            values = protocolFinsTcp.Read<short>(new DataAddress()
             {
                 Value = "D1234",
-                Type = Interface.PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = 1
             }).ToArray();
 
@@ -181,10 +182,10 @@ namespace Infrastructure.Plc.Omron.Tests
                 }
             );
 
-            values = protocolFinsTcp.Read<string>(new Interface.PlcAddress()
+            values = protocolFinsTcp.Read<string>(new DataAddress()
             {
                 Value = "D1234",
-                Type = Interface.PlcAddressType.String,
+                Type = DataAddressType.String,
                 Offset = 3
             }).ToArray();
 
@@ -215,10 +216,10 @@ namespace Infrastructure.Plc.Omron.Tests
                 }
             );
 
-            values = protocolFinsTcp.Read<bool>(new Interface.PlcAddress()
+            values = protocolFinsTcp.Read<bool>(new DataAddress()
             {
                 Value = "D1234",
-                Type = Interface.PlcAddressType.Boolean,
+                Type = DataAddressType.Boolean,
                 Offset = 1
             }).ToArray();
 
@@ -252,10 +253,10 @@ namespace Infrastructure.Plc.Omron.Tests
                 }
             );
 
-            values = protocolFinsTcp.Read<float>(new Interface.PlcAddress()
+            values = protocolFinsTcp.Read<float>(new DataAddress()
             {
                 Value = "D1234",
-                Type = Interface.PlcAddressType.Float,
+                Type = DataAddressType.Float,
                 Offset = 0
             }).ToArray();
 
@@ -286,10 +287,10 @@ namespace Infrastructure.Plc.Omron.Tests
             try
             {
                 comPort.BytesToRead.Returns(0);
-                protocolFinsTcp.Write<short>(new Interface.PlcAddress()
+                protocolFinsTcp.Write<short>(new DataAddress()
                 {
                     Value = "D100",
-                    Type = Interface.PlcAddressType.Short,
+                    Type = DataAddressType.Short,
                     Offset = 0
                 }, new short[] { (short)0x1234 });
             }
@@ -325,10 +326,10 @@ namespace Infrastructure.Plc.Omron.Tests
             try
             {
                 comPort.BytesToRead.Returns(0);
-                protocolFinsTcp.Write<int>(new Interface.PlcAddress()
+                protocolFinsTcp.Write<int>(new DataAddress()
                 {
                     Value = "D100",
-                    Type = Interface.PlcAddressType.Int,
+                    Type = DataAddressType.Int,
                     Offset = 0
                 }, new int[] { 0x12345678 });
             }
@@ -364,10 +365,10 @@ namespace Infrastructure.Plc.Omron.Tests
             try
             {
                 comPort.BytesToRead.Returns(0);
-                protocolFinsTcp.Write(new Interface.PlcAddress()
+                protocolFinsTcp.Write(new DataAddress()
                 {
                     Value = "D100",
-                    Type = Interface.PlcAddressType.String,
+                    Type = DataAddressType.String,
                     Offset = 3
                 }, new string[] { "1234" });
             }
@@ -402,10 +403,10 @@ namespace Infrastructure.Plc.Omron.Tests
 
             try
             {
-                protocolFinsTcp.Write(new Interface.PlcAddress()
+                protocolFinsTcp.Write(new DataAddress()
                 {
                     Value = "D100",
-                    Type = Interface.PlcAddressType.Boolean,
+                    Type = DataAddressType.Boolean,
                     Offset = 1
                 }, new bool[] { false });
             }
@@ -441,10 +442,10 @@ namespace Infrastructure.Plc.Omron.Tests
             try
             {
                 comPort.BytesToRead.Returns(0);
-                protocolFinsTcp.Write(new Interface.PlcAddress()
+                protocolFinsTcp.Write(new DataAddress()
                 {
                     Value = "D100",
-                    Type = Interface.PlcAddressType.Float,
+                    Type = DataAddressType.Float,
                     Offset = 0
                 }, new float[] { 1 });
             }

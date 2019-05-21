@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Infrastructure.Plc.Omron
             return command.ToArray();
         }
 
-        public static byte[] GetReadCommand(PlcAddress address, byte pcNode, byte plcNode)
+        public static byte[] GetReadCommand(DataAddress address, byte pcNode, byte plcNode)
         {
             var command = new List<byte>();
 
@@ -41,7 +42,7 @@ namespace Infrastructure.Plc.Omron
             return command.ToArray();
         }
 
-        public static byte[] GetWriteCommand<TValue>(PlcAddress address, IEnumerable<TValue> values, byte pcNode, byte plcNode)
+        public static byte[] GetWriteCommand<TValue>(DataAddress address, IEnumerable<TValue> values, byte pcNode, byte plcNode)
         {
             var command = new List<byte>();
             var datas = values.ToList();
@@ -62,14 +63,14 @@ namespace Infrastructure.Plc.Omron
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean:
+                case DataAddressType.Boolean:
                     {
                         var value = (bool)Convert.ChangeType(datas.Single(), valueType);
 
                         command.Add((byte)(value ? 1 : 0));
                     }
                     break;
-                case PlcAddressType.Short:
+                case DataAddressType.Short:
                     datas.ForEach(e =>
                     {
                         var value = (short)Convert.ChangeType(e, valueType);
@@ -78,7 +79,7 @@ namespace Infrastructure.Plc.Omron
                         command.AddRange(bytes.Take(2).Reverse().ToArray());
                     });
                     break;
-                case PlcAddressType.Ushort:
+                case DataAddressType.Ushort:
                     datas.ForEach(e =>
                     {
                         var value = (ushort)Convert.ChangeType(e, valueType);
@@ -87,7 +88,7 @@ namespace Infrastructure.Plc.Omron
                         command.AddRange(bytes.Take(2).Reverse().ToArray());
                     });
                     break;
-                case PlcAddressType.Int:
+                case DataAddressType.Int:
                     datas.ForEach(e =>
                     {
                         var value = (int)Convert.ChangeType(e, valueType);
@@ -98,7 +99,7 @@ namespace Infrastructure.Plc.Omron
                     });
                     break;
 
-                case PlcAddressType.Float:
+                case DataAddressType.Float:
                     datas.ForEach(e =>
                     {
                         var value = (float)Convert.ChangeType(e, valueType);
@@ -108,7 +109,7 @@ namespace Infrastructure.Plc.Omron
                         command.AddRange(bytes.Skip(2).Take(2).Reverse().ToArray());
                     });
                     break;
-                case PlcAddressType.String:
+                case DataAddressType.String:
                     {
                         var value = (string)Convert.ChangeType(datas.Single(), valueType);
                         var bytes = Encoding.ASCII.GetBytes(value);
@@ -127,7 +128,7 @@ namespace Infrastructure.Plc.Omron
             return command.ToArray();
         }
 
-        private static byte GetMemoryAreaCode(PlcAddress address)
+        private static byte GetMemoryAreaCode(DataAddress address)
         {
             MemoryAreaType memoryAreaType = MemoryAreaType.None;
             MemoryAreaCode memoryAreaCode;
@@ -143,10 +144,10 @@ namespace Infrastructure.Plc.Omron
 
             memoryAreaCode = MemoryAreaCode.GetMemoryAreaCode(memoryAreaType);
 
-            return address.Type == PlcAddressType.Boolean ? memoryAreaCode.Bit : memoryAreaCode.Word;
+            return address.Type == DataAddressType.Boolean ? memoryAreaCode.Bit : memoryAreaCode.Word;
         }
 
-        private static byte[] GetBeginingAddressBytes(PlcAddress address)
+        private static byte[] GetBeginingAddressBytes(DataAddress address)
         {
             var result = new List<byte>();
 
@@ -159,7 +160,7 @@ namespace Infrastructure.Plc.Omron
                 result = new List<byte>(BitConverter.GetBytes(ushort.Parse(address.Value.Substring(1))).Reverse());
             }
 
-            if (address.Type == PlcAddressType.Boolean)
+            if (address.Type == DataAddressType.Boolean)
             {
                 result.Add((byte)address.Offset);
             }
@@ -171,27 +172,27 @@ namespace Infrastructure.Plc.Omron
             return result.ToArray();
         }
 
-        private static byte[] GetItemCountBytes(PlcAddress address)
+        private static byte[] GetItemCountBytes(DataAddress address)
         {
             int count = 0;
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean: count = 1; break;
-                case PlcAddressType.Short: count = 1 * (address.Offset + 1); break;
-                case PlcAddressType.Ushort: count = 1 * (address.Offset + 1); break;
-                case PlcAddressType.Int: count = 2 * (address.Offset + 1); break;
-                case PlcAddressType.Float: count = 2 * (address.Offset + 1); break;
-                case PlcAddressType.String: count = (int)Math.Ceiling((address.Offset + 1) / 2d); break;
+                case DataAddressType.Boolean: count = 1; break;
+                case DataAddressType.Short: count = 1 * (address.Offset + 1); break;
+                case DataAddressType.Ushort: count = 1 * (address.Offset + 1); break;
+                case DataAddressType.Int: count = 2 * (address.Offset + 1); break;
+                case DataAddressType.Float: count = 2 * (address.Offset + 1); break;
+                case DataAddressType.String: count = (int)Math.Ceiling((address.Offset + 1) / 2d); break;
                 default: throw new NotImplementedException();
             }
 
             return BitConverter.GetBytes((ushort)count).Reverse().ToArray();
         }
 
-        private static byte[] GetLenghtBytes(PlcAddress address)
+        private static byte[] GetLenghtBytes(DataAddress address)
         {
-            int lenght = 2 * 4 + 3 * 3 + 1 + 2 + 1 + 3 + 2 + 2 * BitConverter.ToUInt16(GetItemCountBytes(address).Reverse().ToArray(), 0) + (address.Type == PlcAddressType.Boolean ? -1 : 0);
+            int lenght = 2 * 4 + 3 * 3 + 1 + 2 + 1 + 3 + 2 + 2 * BitConverter.ToUInt16(GetItemCountBytes(address).Reverse().ToArray(), 0) + (address.Type == DataAddressType.Boolean ? -1 : 0);
             var bytes = BitConverter.GetBytes((ushort)lenght);
 
             return new byte[] {

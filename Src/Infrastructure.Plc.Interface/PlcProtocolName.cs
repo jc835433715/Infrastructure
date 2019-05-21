@@ -29,22 +29,6 @@ namespace Infrastructure.Plc.Interface
         /// <summary>
         /// Plc手动模拟
         /// </summary>
-        PlcManualSimulator,
-        /// <summary>
-        /// Opc
-        /// </summary>
-        PlcOpc,
-        /// <summary>
-        /// Modbus主站Tcp
-        /// </summary>
-        PlcModbusMasterTcp,
-        /// <summary>
-        /// Modbus主站Rtu
-        /// </summary>
-        PlcModbusMasterRtu,
-        /// <summary>
-        /// Modbus主站Ascii
-        /// </summary>
-        PlcModbusMasterAscii
+        PlcManualSimulator
     }
 }

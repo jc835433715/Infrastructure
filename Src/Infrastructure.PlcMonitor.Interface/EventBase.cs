@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -16,13 +17,13 @@ namespace Infrastructure.PlcMonitor.Interface
         /// </summary>
         public EventBase()
         {
-            this.PlcAddress = PlcAddress.Empty;
+            this.PlcAddress = DataAddress.Empty;
         }
 
         /// <summary>
         /// 地址
         /// </summary>
-        public PlcAddress PlcAddress { get; set; }
+        public DataAddress PlcAddress { get; set; }
 
         /// <summary>
         /// 判断是否值相等

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using Infrastructure.PlcMonitor.Interface;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -12,16 +13,16 @@ namespace Infrastructure.Plc.Factory.Tests
         [Test()]
         public void SortPlcAddressForUTTest00()
         {
-            var eventInfoes = new List<PlcAddress>
+            var eventInfoes = new List<DataAddress>
             {
-                new PlcAddress(){ Value= "DM003" },
-                new PlcAddress(){ Value= "DM001" },
-                new PlcAddress(){ Value= "DM002" },
-                new PlcAddress(){ Value= "DM005" },
-                new PlcAddress(){ Value= "DM007" },
-                new PlcAddress(){ Value= "DM006" },
-                new PlcAddress(){ Value= "DM009" },
-                new PlcAddress(){ Value= "E0_123"},
+                new DataAddress(){ Value= "DM003" },
+                new DataAddress(){ Value= "DM001" },
+                new DataAddress(){ Value= "DM002" },
+                new DataAddress(){ Value= "DM005" },
+                new DataAddress(){ Value= "DM007" },
+                new DataAddress(){ Value= "DM006" },
+                new DataAddress(){ Value= "DM009" },
+                new DataAddress(){ Value= "E0_123"},
             };
             var result = PlcAddressSortHelper.Sort<short>(eventInfoes);
 
@@ -37,14 +38,14 @@ namespace Infrastructure.Plc.Factory.Tests
         [Test()]
         public void SortPlcAddressForUTTest01()
         {
-            var eventInfoes = new List<PlcAddress>
+            var eventInfoes = new List<DataAddress>
             {
-                new PlcAddress(){ Value= "DM004" },
-                new PlcAddress() { Value = "DM000" },
-                new PlcAddress() { Value = "DM002" },
-                new PlcAddress() { Value = "DM008" },
-                new PlcAddress() { Value = "DM010" },
-                new PlcAddress() { Value = "DM018" }
+                new DataAddress(){ Value= "DM004" },
+                new DataAddress() { Value = "DM000" },
+                new DataAddress() { Value = "DM002" },
+                new DataAddress() { Value = "DM008" },
+                new DataAddress() { Value = "DM010" },
+                new DataAddress() { Value = "DM018" }
             };
             var result = PlcAddressSortHelper.Sort<int>(eventInfoes);
 
@@ -59,9 +60,9 @@ namespace Infrastructure.Plc.Factory.Tests
         [Test()]
         public void SortPlcAddressForUTTes02()
         {
-            var eventInfoes = new List<PlcAddress>
+            var eventInfoes = new List<DataAddress>
             {
-                new PlcAddress() { Value = "DM001" }
+                new DataAddress() { Value = "DM001" }
             };
 
             var result = PlcAddressSortHelper.Sort<short>(eventInfoes);
@@ -75,10 +76,10 @@ namespace Infrastructure.Plc.Factory.Tests
         [Test()]
         public void SortPlcAddressForUTTes03()
         {
-            var eventInfoes = new List<PlcAddress>
+            var eventInfoes = new List<DataAddress>
             {
-                new PlcAddress() { Value = "DM001" },
-                new PlcAddress() { Value = "DM003" }
+                new DataAddress() { Value = "DM001" },
+                new DataAddress() { Value = "DM003" }
             };
 
             var result = PlcAddressSortHelper.Sort<short>(eventInfoes);
@@ -93,12 +94,12 @@ namespace Infrastructure.Plc.Factory.Tests
         [Test()]
         public void SortPlcAddressForUTTes04()
         {
-            var eventInfoes = new List<PlcAddress>
+            var eventInfoes = new List<DataAddress>
             {
-                new PlcAddress() { Value = "DM001" },
-                new PlcAddress() { Value = "DM003" },
-                new PlcAddress() { Value = "DM005" },
-                new PlcAddress() { Value = "DM006" }
+                new DataAddress() { Value = "DM001" },
+                new DataAddress() { Value = "DM003" },
+                new DataAddress() { Value = "DM005" },
+                new DataAddress() { Value = "DM006" }
             };
 
             var result = PlcAddressSortHelper.Sort<short>(eventInfoes);

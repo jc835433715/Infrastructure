@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Plc.Interface;
+using Infrastructure.Common.Interface;
 
 namespace Infrastructure.PlcMonitor.Interface.Tests
 {
@@ -17,7 +18,7 @@ namespace Infrastructure.PlcMonitor.Interface.Tests
         {
             EndValueReadEvent<int> endValueReadEvent = new EndValueReadEvent<int>()
             {
-                PlcAddress = PlcAddress.Empty
+                PlcAddress = DataAddress.Empty
             };
             var endValueReadEventCloned = endValueReadEvent.Clone();
 

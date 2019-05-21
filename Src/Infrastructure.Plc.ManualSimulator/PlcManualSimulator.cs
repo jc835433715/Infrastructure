@@ -33,7 +33,7 @@ namespace Infrastructure.Plc.ManualSimulator
         public event EventHandler<WritingEventArgs> Writing;
         public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged;
 
-        public IEnumerable<TValue> Read<TValue>(PlcAddress address)
+        public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
             var result = new TValue[] { };
             var re = new ReadindgEventArgs() { Address = address };
@@ -47,7 +47,7 @@ namespace Infrastructure.Plc.ManualSimulator
             return result;
         }
 
-        public void Write<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
             var ea = new WritingEventArgs()
             {

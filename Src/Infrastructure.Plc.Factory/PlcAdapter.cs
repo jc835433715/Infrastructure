@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,10 +37,10 @@ namespace Infrastructure.Plc.Factory
         public bool ReadUshort(string addressValue, ref string[] values, ref string errorInfo)
         {
             var result = new List<string>();
-            var value = Plc.ReadSingle<ushort>(new PlcAddress()
+            var value = Plc.ReadSingle<ushort>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Ushort,
+                Type = DataAddressType.Ushort,
                 Offset = 0
             });
 
@@ -67,10 +68,10 @@ namespace Infrastructure.Plc.Factory
             addressValue = GetAddressValue(addressValueArea) + addressValue;
 
             var result = new List<string>();
-            var value = Plc.ReadSingle<ushort>(new PlcAddress()
+            var value = Plc.ReadSingle<ushort>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Ushort,
+                Type = DataAddressType.Ushort,
                 Offset = 0
             });
 
@@ -96,10 +97,10 @@ namespace Infrastructure.Plc.Factory
         public bool ReadShort(string addressValue, int count, ref int[] values, ref string errorInfo)
         {
             var temp = new List<int>();
-            var value = Plc.Read<short>(new PlcAddress()
+            var value = Plc.Read<short>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = count - 1
             });
 
@@ -125,10 +126,10 @@ namespace Infrastructure.Plc.Factory
         {
             addressValue = GetAddressValue(addressValueArea) + addressValue;
 
-            var value = Plc.Read<short>(new PlcAddress()
+            var value = Plc.Read<short>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = count - 1
             });
 
@@ -151,10 +152,10 @@ namespace Infrastructure.Plc.Factory
         /// <returns></returns>
         public bool ReadInt(string addressValue, int count, ref int[] values, ref string errorInfo)
         {
-            var value = Plc.Read<int>(new PlcAddress()
+            var value = Plc.Read<int>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = count - 1
             });
 
@@ -177,10 +178,10 @@ namespace Infrastructure.Plc.Factory
         {
             addressValue = GetAddressValue(addressValueArea) + addressValue;
 
-            var value = Plc.Read<int>(new PlcAddress()
+            var value = Plc.Read<int>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = count - 1
             });
 
@@ -202,10 +203,10 @@ namespace Infrastructure.Plc.Factory
         /// 
         public bool ReadFloat(string addressValue, int count, ref float[] values, ref string errorInfo)
         {
-            var value = Plc.Read<float>(new PlcAddress()
+            var value = Plc.Read<float>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Float,
+                Type = DataAddressType.Float,
                 Offset = count - 1
             });
 
@@ -228,10 +229,10 @@ namespace Infrastructure.Plc.Factory
         {
             addressValue = GetAddressValue(addressValueArea) + addressValue;
 
-            var value = Plc.Read<float>(new PlcAddress()
+            var value = Plc.Read<float>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Float,
+                Type = DataAddressType.Float,
                 Offset = count - 1
             });
 
@@ -255,10 +256,10 @@ namespace Infrastructure.Plc.Factory
             var temp = new List<string>();
             addressValue = GetAddressValue(addressValueArea) + addressValue;
 
-            var value = Plc.ReadSingle<string>(new PlcAddress()
+            var value = Plc.ReadSingle<string>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Short,
+                Type = DataAddressType.Short,
                 Offset = (count * 2) - 1
             });
 
@@ -279,10 +280,10 @@ namespace Infrastructure.Plc.Factory
         /// <returns></returns>
         public bool ReadString(string addressValue, int length, ref string barcode, ref string errorInfo)
         {
-            var value = Plc.ReadSingle<string>(new PlcAddress()
+            var value = Plc.ReadSingle<string>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.String,
+                Type = DataAddressType.String,
                 Offset = length - 1
             });
 
@@ -302,17 +303,17 @@ namespace Infrastructure.Plc.Factory
         /// <returns></returns>
         public bool ReadStringByWord(string addressValueLength, string addressValueBarcode, ref string barcode, ref string errorInfo)
         {
-            var lengthValue = Plc.ReadSingle<int>(new PlcAddress()
+            var lengthValue = Plc.ReadSingle<int>(new DataAddress()
             {
                 Value = addressValueLength,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = 0
             });
 
-            var value = Plc.ReadSingle<string>(new PlcAddress()
+            var value = Plc.ReadSingle<string>(new DataAddress()
             {
                 Value = addressValueBarcode,
-                Type = PlcAddressType.String,
+                Type = DataAddressType.String,
                 Offset = (lengthValue * 2) - 1
             });
 
@@ -332,17 +333,17 @@ namespace Infrastructure.Plc.Factory
         /// <returns></returns>
         public bool ReadStringByBarcodeLength(string addressValueLength, string addressValueBarcode, ref string barcode, ref string errorInfo)
         {
-            var lengthValue = Plc.ReadSingle<int>(new PlcAddress()
+            var lengthValue = Plc.ReadSingle<int>(new DataAddress()
             {
                 Value = addressValueLength,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = 0
             });
 
-            var value = Plc.ReadSingle<string>(new PlcAddress()
+            var value = Plc.ReadSingle<string>(new DataAddress()
             {
                 Value = addressValueBarcode,
-                Type = PlcAddressType.String,
+                Type = DataAddressType.String,
                 Offset = lengthValue - 1
             });
 
@@ -362,10 +363,10 @@ namespace Infrastructure.Plc.Factory
         /// 
         public bool WriteString(string addressValue, string barcode, ref string errorInfo)
         {
-            Plc.WriteSingle<string>(new PlcAddress()
+            Plc.WriteSingle<string>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.String,
+                Type = DataAddressType.String,
                 Offset = barcode.Length - 1
             }, barcode);
 
@@ -384,10 +385,10 @@ namespace Infrastructure.Plc.Factory
         public bool WriteShort(string addressValue, int value, ref string errorInfo)
         {
 
-            Plc.WriteSingle<short>(new PlcAddress()
+            Plc.WriteSingle<short>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = 0
             }, (short)value);
 
@@ -407,10 +408,10 @@ namespace Infrastructure.Plc.Factory
         {
             addressValueName = GetAddressValue(addressValueArea) + addressValueName;
 
-            Plc.WriteSingle<short>(new PlcAddress()
+            Plc.WriteSingle<short>(new DataAddress()
             {
                 Value = addressValueName,
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Offset = 0
             }, (short)value);
 
@@ -429,10 +430,10 @@ namespace Infrastructure.Plc.Factory
         /// 
         public bool WriteBool(string addressValue, string index, int value, ref string errorInfo)
         {
-            Plc.WriteSingle<bool>(new PlcAddress()
+            Plc.WriteSingle<bool>(new DataAddress()
             {
                 Value = addressValue,
-                Type = PlcAddressType.Boolean,
+                Type = DataAddressType.Boolean,
                 Offset = int.Parse(index)
             }, value == 1);
 
@@ -453,10 +454,10 @@ namespace Infrastructure.Plc.Factory
         {
             addressValueName = GetAddressValue(addressValueArea) + addressValueName;
 
-            Plc.WriteSingle<bool>(new PlcAddress()
+            Plc.WriteSingle<bool>(new DataAddress()
             {
                 Value = addressValueName,
-                Type = PlcAddressType.Boolean,
+                Type = DataAddressType.Boolean,
                 Offset = int.Parse(index)
             }, value == 1);
 

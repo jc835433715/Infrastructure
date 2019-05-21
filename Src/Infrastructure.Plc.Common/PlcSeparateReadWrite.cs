@@ -73,7 +73,7 @@ namespace Infrastructure.Plc.Common
         /// <typeparam name="TValue">类型</typeparam>
         /// <param name="address">地址</param>
         /// <returns>返回值</returns>
-        public IEnumerable<TValue> Read<TValue>(PlcAddress address)
+        public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
             return plcReaders[(readCount++) % plcReaderCount].Read<TValue>(address);
         }
@@ -84,7 +84,7 @@ namespace Infrastructure.Plc.Common
         /// <typeparam name="TValue">类型</typeparam>
         /// <param name="address">地址</param>
         /// <param name="values">T类型的数组</param>
-        public void Write<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
             plcWriters[(writeCount++) % plcWriterCount].Write(address, values);
         }

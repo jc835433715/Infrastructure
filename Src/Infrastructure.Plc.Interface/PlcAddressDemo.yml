@@ -1,3 +1,0 @@
----
-plcAddress: {name: DataAddress, value: DM1000, type: Float, offset: 4}
-...

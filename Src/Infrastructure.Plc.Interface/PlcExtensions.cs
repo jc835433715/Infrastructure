@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Common.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Infrastructure.Plc.Interface
         /// <typeparam name="TValue">类型</typeparam>
         /// <param name="address">地址</param>
         /// <returns>返回值</returns>
-        public static TValue ReadSingle<TValue>(this IPlc plc, PlcAddress address)
+        public static TValue ReadSingle<TValue>(this IPlc plc, DataAddress address)
         {
             return plc.Read<TValue>(address).Single();
         }
@@ -29,7 +30,7 @@ namespace Infrastructure.Plc.Interface
         /// <typeparam name="TValue">类型</typeparam>
         /// <param name="address">地址</param>
         /// <param name="value">值</param>
-        public static void WriteSingle<TValue>(this IPlc plc, PlcAddress address, TValue value)
+        public static void WriteSingle<TValue>(this IPlc plc, DataAddress address, TValue value)
         {
             plc.Write(address, new TValue[] { value });
         }

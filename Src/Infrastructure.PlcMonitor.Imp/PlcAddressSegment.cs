@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System.Collections.Generic;
 
 namespace Infrastructure.PlcMonitor.Imp
@@ -8,13 +9,13 @@ namespace Infrastructure.PlcMonitor.Imp
     {
         public PlcAddressSegment()
         {
-            this.StartPlcAddress = PlcAddress.Empty;
-            this.AllPlcAddressesByDes = new List<PlcAddress>();
+            this.StartPlcAddress = DataAddress.Empty;
+            this.AllPlcAddressesByDes = new List<DataAddress>();
         }
 
-        public PlcAddress StartPlcAddress { get; set; }
+        public DataAddress StartPlcAddress { get; set; }
 
 
-        public List<PlcAddress> AllPlcAddressesByDes { get; set; }
+        public List<DataAddress> AllPlcAddressesByDes { get; set; }
     }
 }

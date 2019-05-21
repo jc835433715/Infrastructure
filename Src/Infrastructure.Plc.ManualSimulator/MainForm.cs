@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using Infrastructure.UI;
 using System;
 using System.Linq;
@@ -37,32 +38,32 @@ namespace Infrastructure.Plc.ManualSimulator
                             {
                                 switch (readindgEventArgs.Address.Type)
                                 {
-                                    case PlcAddressType.Boolean:
+                                    case DataAddressType.Boolean:
                                         {
                                             readindgEventArgs.Result.Add(value == "1");
                                         }
                                         break;
-                                    case PlcAddressType.Short:
+                                    case DataAddressType.Short:
                                         {
                                             readindgEventArgs.Result.Add(short.Parse(value));
                                         }
                                         break;
-                                    case PlcAddressType.Ushort:
+                                    case DataAddressType.Ushort:
                                         {
                                             readindgEventArgs.Result.Add(ushort.Parse(value));
                                         }
                                         break;
-                                    case PlcAddressType.Int:
+                                    case DataAddressType.Int:
                                         {
                                             readindgEventArgs.Result.Add(int.Parse(value));
                                         }
                                         break;
-                                    case PlcAddressType.Float:
+                                    case DataAddressType.Float:
                                         {
                                             readindgEventArgs.Result.Add(float.Parse(value));
                                         }
                                         break;
-                                    case PlcAddressType.String:
+                                    case DataAddressType.String:
                                         {
                                             readindgEventArgs.Result.Add(value);
                                         }
@@ -71,11 +72,11 @@ namespace Infrastructure.Plc.ManualSimulator
                                 }
                             }
 
-                            if (readindgEventArgs.Address.Type == PlcAddressType.Boolean)
+                            if (readindgEventArgs.Address.Type == DataAddressType.Boolean)
                             {
                                 if (readindgEventArgs.Result.Count != 1) throw new ApplicationException("请重新输入，输入元素数须唯一");
                             }
-                            else if (readindgEventArgs.Address.Type == PlcAddressType.String)
+                            else if (readindgEventArgs.Address.Type == DataAddressType.String)
                             {
                                 if (readindgEventArgs.Result.Count != 1) throw new ApplicationException("请重新输入，输入元素数须唯一");
                             }

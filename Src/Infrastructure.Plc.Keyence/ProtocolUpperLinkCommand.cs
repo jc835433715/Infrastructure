@@ -1,4 +1,5 @@
-﻿using Infrastructure.Plc.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Plc.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Infrastructure.Plc.Keyence
 {
     static class ProtocolUpperLinkCommand
     {
-        public static byte[] GetReadCommand(PlcAddress address)
+        public static byte[] GetReadCommand(DataAddress address)
         {
             var command = new StringBuilder();
 
@@ -16,22 +17,22 @@ namespace Infrastructure.Plc.Keyence
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean:
+                case DataAddressType.Boolean:
                     command.Append($" { 1}");
                     break;
-                case PlcAddressType.Short:
+                case DataAddressType.Short:
                     command.Append($".S {address.Offset + 1}");
                     break;
-                case PlcAddressType.Ushort:
+                case DataAddressType.Ushort:
                     command.Append($".U {address.Offset + 1}");
                     break;
-                case PlcAddressType.Int:
+                case DataAddressType.Int:
                     command.Append($".L {address.Offset + 1}");
                     break;
-                case PlcAddressType.Float:
+                case DataAddressType.Float:
                     command.Append($".H {(address.Offset + 1) * 2}");
                     break;
-                case PlcAddressType.String:
+                case DataAddressType.String:
                     command.Append($".H {(int)Math.Ceiling((address.Offset + 1) / 2d)}");
                     break;
                 default: throw new NotImplementedException();
@@ -42,7 +43,7 @@ namespace Infrastructure.Plc.Keyence
             return Encoding.ASCII.GetBytes(command.ToString());
         }
 
-        public static byte[] GetWriteCommand<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public static byte[] GetWriteCommand<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
             var command = new StringBuilder();
             var valueType = typeof(TValue);
@@ -52,7 +53,7 @@ namespace Infrastructure.Plc.Keyence
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean:
+                case DataAddressType.Boolean:
                     {
                         var value = (bool)Convert.ChangeType(datas.Single(), valueType);
 
@@ -60,7 +61,7 @@ namespace Infrastructure.Plc.Keyence
                         command.Append($" {(value ? 1 : 0)}");
                     }
                     break;
-                case PlcAddressType.Short:
+                case DataAddressType.Short:
                     {
                         command.Append($".S {address.Offset + 1}");
 
@@ -70,7 +71,7 @@ namespace Infrastructure.Plc.Keyence
                         });
                     }
                     break;
-                case PlcAddressType.Ushort:
+                case DataAddressType.Ushort:
                     {
                         command.Append($".U {address.Offset + 1}");
 
@@ -80,7 +81,7 @@ namespace Infrastructure.Plc.Keyence
                         });
                     }
                     break;
-                case PlcAddressType.Int:
+                case DataAddressType.Int:
                     {
                         command.Append($".L {address.Offset + 1}");
 
@@ -90,7 +91,7 @@ namespace Infrastructure.Plc.Keyence
                         });
                     }
                     break;
-                case PlcAddressType.Float:
+                case DataAddressType.Float:
                     {
                         command.Append($".H {(address.Offset + 1) * 2}");
 
@@ -104,7 +105,7 @@ namespace Infrastructure.Plc.Keyence
                         });
                     }
                     break;
-                case PlcAddressType.String:
+                case DataAddressType.String:
                     {
                         var wordCount = (int)Math.Ceiling((address.Offset + 1) / 2d);
                         var value = (string)Convert.ChangeType(datas.Single(), valueType);

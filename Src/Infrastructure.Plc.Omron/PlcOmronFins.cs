@@ -69,9 +69,9 @@ namespace Infrastructure.Plc.Omron
             }
         }
 
-        public IEnumerable<TValue> Read<TValue>(PlcAddress address)
+        public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
 
             var command = ProtocolFinsCommand.GetReadCommand(address, pcNode, plcNode);
             byte[] response = { };
@@ -91,9 +91,9 @@ namespace Infrastructure.Plc.Omron
             return GetValues<TValue>(address, response);
         }
 
-        public void Write<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
             if (values == null || !values.Any()) throw new ApplicationException($"参数异常，values为null或空");
 
             var command = ProtocolFinsCommand.GetWriteCommand(address, values, pcNode, plcNode);
@@ -112,7 +112,7 @@ namespace Infrastructure.Plc.Omron
             }
         }
 
-        private TValue[] GetValues<TValue>(PlcAddress address, byte[] response)
+        private TValue[] GetValues<TValue>(DataAddress address, byte[] response)
         {
             var result = new List<TValue>();
             var valueType = typeof(TValue);
@@ -123,14 +123,14 @@ namespace Infrastructure.Plc.Omron
 
                 switch (address.Type)
                 {
-                    case PlcAddressType.Boolean:
+                    case DataAddressType.Boolean:
                         {
                             var value = (TValue)Convert.ChangeType(datas.Single() != 0, valueType);
 
                             result.Add(value);
                         }
                         break;
-                    case PlcAddressType.Short:
+                    case DataAddressType.Short:
                         for (int index = 0; index <= address.Offset; index++)
                         {
                             var bytes = datas.Skip(index * 2).Take(2).ToArray();
@@ -144,7 +144,7 @@ namespace Infrastructure.Plc.Omron
                             result.Add(value);
                         }
                         break;
-                    case PlcAddressType.Ushort:
+                    case DataAddressType.Ushort:
                         for (int index = 0; index <= address.Offset; index++)
                         {
                             var bytes = datas.Skip(index * 2).Take(2).ToArray();
@@ -158,7 +158,7 @@ namespace Infrastructure.Plc.Omron
                             result.Add(value);
                         }
                         break;
-                    case PlcAddressType.Int:
+                    case DataAddressType.Int:
                         for (int index = 0; index <= address.Offset; index++)
                         {
                             var bytes = datas.Skip(index * 4).Take(4).ToArray();
@@ -174,7 +174,7 @@ namespace Infrastructure.Plc.Omron
                             result.Add(value);
                         }
                         break;
-                    case PlcAddressType.Float:
+                    case DataAddressType.Float:
                         for (int index = 0; index <= address.Offset; index++)
                         {
                             var bytes = datas.Skip(index * 4).Take(4).ToArray();
@@ -190,7 +190,7 @@ namespace Infrastructure.Plc.Omron
                             result.Add(value);
                         }
                         break;
-                    case PlcAddressType.String:
+                    case DataAddressType.String:
                         {
                             var value = (TValue)Convert.ChangeType(Encoding.ASCII.GetString(datas).TrimEnd('\0'), valueType);
 

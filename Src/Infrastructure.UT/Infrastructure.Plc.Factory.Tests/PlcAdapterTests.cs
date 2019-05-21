@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NSubstitute;
 using Infrastructure.Plc.Interface;
+using Infrastructure.Common.Interface;
 
 namespace Infrastructure.Plc.Factory.Tests
 {
@@ -30,7 +31,7 @@ namespace Infrastructure.Plc.Factory.Tests
             var errorInfo = string.Empty;
             var param = new string[] { "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1" };
 
-            plc.Read<ushort>(Arg.Any<PlcAddress>()).Returns(new ushort[] { 65535 });
+            plc.Read<ushort>(Arg.Any<DataAddress>()).Returns(new ushort[] { 65535 });
 
             plcAdapter.ReadUshort("D1200", ref values, ref errorInfo);
             Assert.AreEqual(values, param);
@@ -46,7 +47,7 @@ namespace Infrastructure.Plc.Factory.Tests
             var errorInfo = string.Empty;
             var param = new int[] { 1, 2, 3, 4 };
 
-            plc.Read<short>(Arg.Any<PlcAddress>()).Returns(new short[] { 1, 2, 3, 4 });
+            plc.Read<short>(Arg.Any<DataAddress>()).Returns(new short[] { 1, 2, 3, 4 });
 
             plcAdapter.ReadShort("D1200", 4, ref values, ref errorInfo);
             Assert.AreEqual(values, param);
@@ -63,8 +64,8 @@ namespace Infrastructure.Plc.Factory.Tests
             var errorInfo = string.Empty;
             var param = new string[] { "1", "2", "3", "4" };
 
-            plc.Read<int>(Arg.Any<PlcAddress>()).Returns(new int[] { 2 });
-            plc.Read<string>(Arg.Any<PlcAddress>()).Returns(new string[] { "1234" });
+            plc.Read<int>(Arg.Any<DataAddress>()).Returns(new int[] { 2 });
+            plc.Read<string>(Arg.Any<DataAddress>()).Returns(new string[] { "1234" });
 
             plcAdapter.ReadString("D", "1200", 2, ref values, ref errorInfo);
             Assert.AreEqual(values, param);
@@ -86,7 +87,7 @@ namespace Infrastructure.Plc.Factory.Tests
             var errorInfo = string.Empty;
             var param = new int[] { 1, 2, 3, 4 };
 
-            plc.Read<int>(Arg.Any<PlcAddress>()).Returns(new int[] { 1, 2, 3, 4 });
+            plc.Read<int>(Arg.Any<DataAddress>()).Returns(new int[] { 1, 2, 3, 4 });
 
             plcAdapter.ReadInt("D1200", 4, ref values, ref errorInfo);
             Assert.AreEqual(values, param);
@@ -102,7 +103,7 @@ namespace Infrastructure.Plc.Factory.Tests
             var errorInfo = string.Empty;
             var param = new float[] { 0.1f, 0.2f, 0.3f, 0.4f };
 
-            plc.Read<float>(Arg.Any<PlcAddress>()).Returns(new float[] { 0.1f, 0.2f, 0.3f, 0.4f });
+            plc.Read<float>(Arg.Any<DataAddress>()).Returns(new float[] { 0.1f, 0.2f, 0.3f, 0.4f });
 
             plcAdapter.ReadFloat("D1200", 4, ref values, ref errorInfo);
             Assert.AreEqual(values, param);

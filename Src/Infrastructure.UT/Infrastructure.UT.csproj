@@ -337,7 +337,7 @@
     <Compile Include="Infrastructure.ComPort.Imp.Tests\SerialPort\SerialPortComPortTests.cs" />
     <Compile Include="Infrastructure.Config.Interface.Tests\AppSettingsTests.cs" />
     <Compile Include="CodeContractsTests.cs" />
-    <Compile Include="Infrastructure.Plc.Opc.Tests\PlcOpcByOpcUaHelperTests.cs" />
+    <Compile Include="Infrastructure.Opc.OpcUaHelper.Tests\PlcOpcByOpcUaHelperTests.cs" />
     <Compile Include="Infrastructure.Utils.Tests\MessageWritedEventHelperTests.cs" />
     <Compile Include="Infrastructure.Utils.Tests\SymmetricCryptoTests.cs" />
     <Compile Include="Infrastructure.PlcMonitor.Imp.Tests\EventInfoTests.cs" />
@@ -441,6 +441,10 @@
       <Project>{44514487-9f73-4c8c-afd6-e01ad6e2d8bb}</Project>
       <Name>Infrastructure.Csv.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Ioc.Autofac\Infrastructure.Ioc.Autofac.csproj">
+      <Project>{968ab37b-bf16-42f4-b69a-a7ee11cc23d7}</Project>
+      <Name>Infrastructure.Ioc.Autofac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Ioc.Factory\Infrastructure.Ioc.Factory.csproj">
       <Project>{274552ad-a75f-4007-8b31-9c71b7ae3099}</Project>
       <Name>Infrastructure.Ioc.Factory</Name>
@@ -485,9 +489,37 @@
       <Project>{c7a3bead-5ef7-476a-885f-c4197380a4bf}</Project>
       <Name>Infrastructure.MessageBus.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Modbus.Factory\Infrastructure.Modbus.Factory.csproj">
+      <Project>{2839e651-b665-4572-b1de-33695a9d8267}</Project>
+      <Name>Infrastructure.Modbus.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Modbus.Interface\Infrastructure.Modbus.Interface.csproj">
+      <Project>{7a63a8bf-d692-4f74-82bd-59f362e46a8b}</Project>
+      <Name>Infrastructure.Modbus.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Modbus.NModbus4\Infrastructure.Modbus.NModbus4.csproj">
+      <Project>{1badafb1-1f0d-4af1-ad1f-0b15cd6d967e}</Project>
+      <Name>Infrastructure.Modbus.NModbus4</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Mvp.Interface\Infrastructure.Mvp.Interface.csproj">
       <Project>{471d54ae-f1ef-4860-a170-6b1e30ed3624}</Project>
       <Name>Infrastructure.Mvp.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Opc.Factory\Infrastructure.Opc.Factory.csproj">
+      <Project>{3b171df9-e273-4cf2-9fbc-0a6008726811}</Project>
+      <Name>Infrastructure.Opc.Factory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Opc.HOpc\Infrastructure.Opc.HOpc.csproj">
+      <Project>{a5d6d51a-557e-446f-8888-f15162c6966f}</Project>
+      <Name>Infrastructure.Opc.HOpc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Opc.Interface\Infrastructure.Opc.Interface.csproj">
+      <Project>{9ca0c581-3b4c-4dc7-933f-fad0680c4b84}</Project>
+      <Name>Infrastructure.Opc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure.Opc.OpcUaHelper\Infrastructure.Opc.OpcUaHelper.csproj">
+      <Project>{2f24cbf5-321e-437a-9a0b-9793f64d7c18}</Project>
+      <Name>Infrastructure.Opc.OpcUaHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Plc.Common\Infrastructure.Plc.Common.csproj">
       <Project>{8d0a3c4f-040d-494a-9340-57921b6c92e2}</Project>
@@ -513,21 +545,9 @@
       <Project>{36697f15-d1f6-459a-9e39-a1841b22ed8c}</Project>
       <Name>Infrastructure.Plc.Melsec</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Plc.Modbus\Infrastructure.Plc.Modbus.csproj">
-      <Project>{1badafb1-1f0d-4af1-ad1f-0b15cd6d967e}</Project>
-      <Name>Infrastructure.Plc.Modbus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Plc.Omron\Infrastructure.Plc.Omron.csproj">
       <Project>{19ed814d-d104-4428-9b8b-68506512ad5c}</Project>
       <Name>Infrastructure.Plc.Omron</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Plc.Opc.HOpc\Infrastructure.Plc.Opc.HOpc.csproj">
-      <Project>{a5d6d51a-557e-446f-8888-f15162c6966f}</Project>
-      <Name>Infrastructure.Plc.Opc.HOpc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure.Plc.Opc.OpcUaHelper\Infrastructure.Plc.Opc.OpcUaHelper.csproj">
-      <Project>{2f24cbf5-321e-437a-9a0b-9793f64d7c18}</Project>
-      <Name>Infrastructure.Plc.Opc.OpcUaHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.PlcMonitor.Imp\Infrastructure.PlcMonitor.Imp.csproj">
       <Project>{1336e305-8aae-4672-affb-f89637495b59}</Project>

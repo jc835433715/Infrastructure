@@ -1,4 +1,5 @@
-﻿using Infrastructure.ComPort.Imp.Net;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.ComPort.Imp.Net;
 using Infrastructure.ComPort.Interface;
 using Infrastructure.Plc.Interface;
 using NUnit.Framework;
@@ -29,81 +30,81 @@ namespace Infrastructure.Plc.Keyence.Tests
 
                 Thread.Sleep(500);
 
-                var v1 = protocolHostLink.Read<Boolean>(new PlcAddress()
+                var v1 = protocolHostLink.Read<Boolean>(new DataAddress()
                 {
                     Value = "MR1100",
-                    Type = PlcAddressType.Boolean,
+                    Type = DataAddressType.Boolean,
                     Offset = 0
                 });
-                protocolHostLink.Write<Boolean>(new PlcAddress()
+                protocolHostLink.Write<Boolean>(new DataAddress()
                 {
                     Value = "MR1100",
-                    Type = PlcAddressType.Boolean,
+                    Type = DataAddressType.Boolean,
                     Offset = 0
                 }, new Boolean[] { !v1.Single() });
 
-                var v2 = protocolHostLink.Read<short>(new PlcAddress()
+                var v2 = protocolHostLink.Read<short>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Short,
+                    Type = DataAddressType.Short,
                     Offset = 0
                 });
-                protocolHostLink.Write<short>(new PlcAddress()
+                protocolHostLink.Write<short>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Short,
+                    Type = DataAddressType.Short,
                     Offset = 0
                 }, new short[] { 100 });
 
-                var v3 = protocolHostLink.Read<ushort>(new PlcAddress()
+                var v3 = protocolHostLink.Read<ushort>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Ushort,
+                    Type = DataAddressType.Ushort,
                     Offset = 0
                 });
-                protocolHostLink.Write<ushort>(new PlcAddress()
+                protocolHostLink.Write<ushort>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Ushort,
+                    Type = DataAddressType.Ushort,
                     Offset = 0
                 }, new ushort[] { 100 });
 
-                var v4 = protocolHostLink.Read<int>(new PlcAddress()
+                var v4 = protocolHostLink.Read<int>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Int,
+                    Type = DataAddressType.Int,
                     Offset = 0
                 });
-                protocolHostLink.Write<int>(new PlcAddress()
+                protocolHostLink.Write<int>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Int,
+                    Type = DataAddressType.Int,
                     Offset = 0
                 }, new int[] {100 });
 
-                var v5 = protocolHostLink.Read<float>(new PlcAddress()
+                var v5 = protocolHostLink.Read<float>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Float,
+                    Type = DataAddressType.Float,
                     Offset = 0
                 });
-                protocolHostLink.Write<float>(new PlcAddress()
+                protocolHostLink.Write<float>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.Float,
+                    Type = DataAddressType.Float,
                     Offset = 0
                 }, new float[] { 0.3f});
 
-                var v6 = protocolHostLink.Read<String>(new PlcAddress()
+                var v6 = protocolHostLink.Read<String>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.String,
+                    Type = DataAddressType.String,
                     Offset = 5
                 });
-                protocolHostLink.Write<String>(new PlcAddress()
+                protocolHostLink.Write<String>(new DataAddress()
                 {
                     Value = "DM1180",
-                    Type = PlcAddressType.String,
+                    Type = DataAddressType.String,
                     Offset = 5
                 }, new string[] { "DM11800" });
             }

@@ -33,16 +33,16 @@ namespace Infrastructure.Plc.Mitsubishi
             connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, melsecMcNet.AlienSession.Socket);
         }
 
-        public IEnumerable<TValue> Read<TValue>(PlcAddress address)
+        public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
 
             var result = new List<TValue>();
             var valueType = typeof(TValue);
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean:
+                case DataAddressType.Boolean:
                     {
                         var operateResult = melsecMcNet.ReadBool(address.Value);
 
@@ -53,7 +53,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         result.Add(value);
                     }
                     break;
-                case PlcAddressType.Short:
+                case DataAddressType.Short:
                     {
                         var operateResult = melsecMcNet.ReadInt16(address.Value, (ushort)(address.Offset + 1));
 
@@ -67,7 +67,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         });
                     }
                     break;
-                case PlcAddressType.Ushort:
+                case DataAddressType.Ushort:
                     {
                         var operateResult = melsecMcNet.ReadUInt16(address.Value, (ushort)(address.Offset + 1));
 
@@ -81,7 +81,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         });
                     }
                     break;
-                case PlcAddressType.Int:
+                case DataAddressType.Int:
                     {
                         var operateResult = melsecMcNet.ReadInt32(address.Value, (ushort)(address.Offset + 1));
 
@@ -95,7 +95,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         });
                     }
                     break;
-                case PlcAddressType.Float:
+                case DataAddressType.Float:
                     {
                         var operateResult = melsecMcNet.ReadFloat(address.Value, (ushort)(address.Offset + 1));
 
@@ -109,7 +109,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         });
                     }
                     break;
-                case PlcAddressType.String:
+                case DataAddressType.String:
                     {
                         var operateResult = melsecMcNet.ReadString(address.Value, (ushort)(address.Offset + 1));
 
@@ -127,9 +127,9 @@ namespace Infrastructure.Plc.Mitsubishi
             return result;
         }
 
-        public void Write<TValue>(PlcAddress address, IEnumerable<TValue> values)
+        public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
-            if (address.Equals(PlcAddress.Empty)) throw new ApplicationException("地址为空");
+            if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
             if (values == null || !values.Any()) throw new ApplicationException($"参数异常，values为null或空");
 
             var valueType = typeof(TValue);
@@ -137,14 +137,14 @@ namespace Infrastructure.Plc.Mitsubishi
 
             switch (address.Type)
             {
-                case PlcAddressType.Boolean:
+                case DataAddressType.Boolean:
                     {
                         var value = (bool)Convert.ChangeType(values.Single(), valueType);
 
                         operateResult = melsecMcNet.Write(address.Value, value);
                     }
                     break;
-                case PlcAddressType.Short:
+                case DataAddressType.Short:
                     {
                         var list = new List<short>();
 
@@ -158,7 +158,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         operateResult = melsecMcNet.Write(address.Value, list.ToArray());
                     }
                     break;
-                case PlcAddressType.Ushort:
+                case DataAddressType.Ushort:
                     {
                         var list = new List<ushort>();
 
@@ -172,7 +172,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         operateResult = melsecMcNet.Write(address.Value, list.ToArray());
                     }
                     break;
-                case PlcAddressType.Int:
+                case DataAddressType.Int:
                     {
                         var list = new List<int>();
 
@@ -186,7 +186,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         operateResult = melsecMcNet.Write(address.Value, list.ToArray());
                     }
                     break;
-                case PlcAddressType.Float:
+                case DataAddressType.Float:
                     {
                         var list = new List<float>();
 
@@ -200,7 +200,7 @@ namespace Infrastructure.Plc.Mitsubishi
                         operateResult = melsecMcNet.Write(address.Value, list.ToArray());
                     }
                     break;
-                case PlcAddressType.String:
+                case DataAddressType.String:
                     {
                         var value = (string)Convert.ChangeType(values.Single(), valueType);
 

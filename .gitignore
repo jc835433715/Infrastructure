@@ -65,3 +65,10 @@
 /Src/Infrastructure.Plc.Opc.HOpc/obj/Debug
 /Src/Infrastructure.Plc.Opc.OpcUaHelper/obj/Debug
 /Src/Infrastructure.Ioc.Autofac/obj/Debug
+/Src/Infrastructure.Modbus.Factory/obj/Debug
+/Src/Infrastructure.Modbus.Interface/obj/Debug
+/Src/Infrastructure.Modbus.NModbus4/obj/Debug
+/Src/Infrastructure.Opc.Factory/obj/Debug
+/Src/Infrastructure.Opc.HOpc/obj/Debug
+/Src/Infrastructure.Opc.Interface/obj/Debug
+/Src/Infrastructure.Opc.OpcUaHelper/obj/Debug

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Common.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Infrastructure.Plc.Interface
         /// <typeparam name="TValue">地址类型</typeparam>
         /// <param name="distinctPlcAddresses">去重后的地址</param>
         /// <returns>排序结果</returns>
-        public static SortResult Sort<TValue>(IEnumerable<PlcAddress> distinctPlcAddresses)
+        public static SortResult Sort<TValue>(IEnumerable<DataAddress> distinctPlcAddresses)
         {
             var result = new SortResult();
             var query = from address in distinctPlcAddresses
@@ -39,7 +40,7 @@ namespace Infrastructure.Plc.Interface
 
                     if (value[compareTime + 1].Value - value[compareTime].Value == GetIntervalWordCount(typeof(TValue)))
                     {
-                        if (plcAddressSegment.StartAddress.Equals(PlcAddress.Empty))
+                        if (plcAddressSegment.StartAddress.Equals(DataAddress.Empty))
                         {
                             plcAddressSegment.StartAddress = value[compareTime].Address;
                             plcAddressSegment.AllAddressesByDes.Add(value[compareTime].Address);
@@ -65,10 +66,10 @@ namespace Infrastructure.Plc.Interface
                 }
             }
 
-            result.AddressNotSegment.Addresses.AddRange(distinctPlcAddresses.Except(new Func<IEnumerable<PlcAddress>>(
+            result.AddressNotSegment.Addresses.AddRange(distinctPlcAddresses.Except(new Func<IEnumerable<DataAddress>>(
                () =>
                                {
-                                   var r = new List<PlcAddress>();
+                                   var r = new List<DataAddress>();
 
                                    result.AddressSegments.ForEach(e => r.AddRange(e.AllAddressesByDes));
 
@@ -156,19 +157,19 @@ namespace Infrastructure.Plc.Interface
         /// </summary>
         public PlcAddressSegment()
         {
-            this.StartAddress = PlcAddress.Empty;
-            this.AllAddressesByDes = new List<PlcAddress>();
+            this.StartAddress = DataAddress.Empty;
+            this.AllAddressesByDes = new List<DataAddress>();
         }
 
         /// <summary>
         /// 开始地址
         /// </summary>
-        public PlcAddress StartAddress { get; set; }
+        public DataAddress StartAddress { get; set; }
 
         /// <summary>
         /// 所有地址
         /// </summary>
-        public List<PlcAddress> AllAddressesByDes { get; set; }
+        public List<DataAddress> AllAddressesByDes { get; set; }
     }
 
     /// <summary>
@@ -181,13 +182,13 @@ namespace Infrastructure.Plc.Interface
         /// </summary>
         public PlcAddressNotSegment()
         {
-            this.Addresses = new List<PlcAddress>();
+            this.Addresses = new List<DataAddress>();
         }
 
         /// <summary>
         /// 地址
         /// </summary>
-        public List<PlcAddress> Addresses { get; set; }
+        public List<DataAddress> Addresses { get; set; }
 
         /// <summary>
         /// 地址数

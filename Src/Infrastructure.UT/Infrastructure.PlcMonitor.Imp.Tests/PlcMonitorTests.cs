@@ -1,4 +1,5 @@
-﻿using Infrastructure.Log.Interface;
+﻿using Infrastructure.Common.Interface;
+using Infrastructure.Log.Interface;
 using Infrastructure.Plc.Interface;
 using Infrastructure.PlcMonitor.Interface;
 using NSubstitute;
@@ -14,7 +15,7 @@ namespace Infrastructure.PlcMonitor.Imp.Tests
     public class PlcMonitorTests
     {
         private PlcMonitorImp plcMonitorImp;
-        private PlcAddress address;
+        private DataAddress address;
         private bool isEndValueReadEventCallback;
         private bool isEndValueReadEventStatusCallback;
         private bool isFromStartValueToEndValueReadEventCallback;
@@ -33,10 +34,10 @@ namespace Infrastructure.PlcMonitor.Imp.Tests
             this.isNotStartValueReadEventCallback = false;
             this.isValueReadChangedEventCallback = false;
             this.plcMonitorImp = new PlcMonitorImp(plc, loggerFactory);
-            this.address = new PlcAddress
+            this.address = new DataAddress
             {
                 Name = "Adddress",
-                Type = PlcAddressType.Int,
+                Type = DataAddressType.Int,
                 Value = "E0_300",
                 Offset = 0
             };
