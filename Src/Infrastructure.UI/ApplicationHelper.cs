@@ -71,9 +71,10 @@ namespace Infrastructure.UI
                 return;
             }
 
-            System.Windows.Application app = new System.Windows.Application();
-
-            app.DispatcherUnhandledException += (sender, e) => Write(e.Exception, logAction);
+            if (System.Windows.Application.Current != null)
+            {
+                System.Windows.Application.Current.DispatcherUnhandledException += (sender, e) => Write(e.Exception, logAction);
+            }
             Ms.Application.SetUnhandledExceptionMode(Ms.UnhandledExceptionMode.CatchException);
             Ms.Application.ThreadException += (sender, e) => Write(e.Exception, logAction);
             AppDomain.CurrentDomain.UnhandledException += (sender, e) => Write(e.ExceptionObject as Exception, logAction);
