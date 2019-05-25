@@ -10,7 +10,7 @@ namespace Infrastructure.Ioc.Factory
     public static class DependencyResolverManager
     {
         /// <summary>
-        /// 初始化
+        /// 初始化Ninject
         /// </summary>
         /// <param name="dependencyConfigAssemblyStrings">依赖注入配置程序集</param>
         /// <param name="dependencyConfigNameSpaceStrings">依赖注入配置程序集命名空间</param>
@@ -21,11 +21,11 @@ namespace Infrastructure.Ioc.Factory
         }
 
         /// <summary>
-        /// 初始化
+        /// 初始化Ninject
         /// <param name="dependencyConfig">继承DependencyConfigBase的对象</param>
         /// <param name="kernel">Ninject的kernel</param>
         /// </summary>
-        public static void InitializeForUT(object dependencyConfig, object kernel = null)
+        public static void Initialize(object dependencyConfig, object kernel = null)
         {
             dependencyResolver = new NinjectDependencyResolver(dependencyConfig, kernel);
         }
