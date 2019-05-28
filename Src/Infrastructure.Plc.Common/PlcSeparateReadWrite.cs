@@ -62,7 +62,7 @@ namespace Infrastructure.Plc.Common
             {
                 plc.ConnectionStateChanged += (s, e) =>
                 {
-                    connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged,s, e);
+                    connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, this, e);
                 };
             });
         }

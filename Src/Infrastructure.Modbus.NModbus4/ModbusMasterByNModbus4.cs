@@ -63,7 +63,7 @@ namespace Infrastructure.Modbus.NModbus4
 
                     master = ModbusIpMaster.CreateIp(client);
 
-                    connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, client);
+                    connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, this, client);
                 }
 
                 if (serialPortComPortConfigInfo != null)
@@ -91,7 +91,7 @@ namespace Infrastructure.Modbus.NModbus4
                         master = ModbusSerialMaster.CreateAscii(port);
                     }
 
-                    connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, port);
+                    connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, this, port);
                 }
             }
             catch (Exception e)

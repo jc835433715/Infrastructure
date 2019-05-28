@@ -51,9 +51,9 @@ namespace Infrastructure.ComPort.Interface
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
         /// <param name="socket">Socket</param>
-        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, Socket socket)
+        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, Socket socket)
         {
-            StartMonitor(() => socket?.Send(new byte[] { }, 0, 0), socket, connectionStateChanged);
+            StartMonitor(() => socket?.Send(new byte[] { }, 0, 0), sender , connectionStateChanged);
         }
 
         /// <summary>
@@ -61,9 +61,9 @@ namespace Infrastructure.ComPort.Interface
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
         /// <param name="tcpClient">TcpClient</param>
-        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, TcpClient tcpClient)
+        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, TcpClient tcpClient)
         {
-            StartMonitor(() => tcpClient?.GetStream().Write(new byte[] { }, 0, 0), tcpClient, connectionStateChanged);
+            StartMonitor(() => tcpClient?.GetStream().Write(new byte[] { }, 0, 0), sender , connectionStateChanged);
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Infrastructure.ComPort.Interface
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
         /// <param name="serialPort">SerialPort</param>
-        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, System.IO.Ports.SerialPort serialPort)
+        public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, System.IO.Ports.SerialPort serialPort)
         {
-            StartMonitor(() => serialPort?.Write(new byte[] { }, 0, 0), serialPort, connectionStateChanged);
+            StartMonitor(() => serialPort?.Write(new byte[] { }, 0, 0), sender , connectionStateChanged);
         }
 
         /// <summary>

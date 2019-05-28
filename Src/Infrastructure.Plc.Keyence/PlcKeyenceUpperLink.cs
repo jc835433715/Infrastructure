@@ -19,7 +19,7 @@ namespace Infrastructure.Plc.Keyence
 
             this.comPort.ConnectionStateChanged += (s, e) =>
             {
-                connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, s, e);
+                connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, this, e);
             };
         }
 

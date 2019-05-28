@@ -36,7 +36,7 @@ namespace Infrastructure.Plc.Omron
 
             this.comPort.ConnectionStateChanged += (s, e) =>
             {
-                connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, s, e);
+                connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, this, e);
             };
         }
 
@@ -48,7 +48,7 @@ namespace Infrastructure.Plc.Omron
             {
                 var command = ProtocolFinsCommand.GetHandshakeCommand(pcNode);
                 var response = new byte[] { };
-                
+
                 if (!comPort.IsConnected) comPort.Open(false);
 
                 response = Send(command);

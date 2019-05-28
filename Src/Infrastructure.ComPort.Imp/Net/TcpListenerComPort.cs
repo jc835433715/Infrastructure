@@ -138,7 +138,7 @@ namespace Infrastructure.ComPort.Imp.Net
 
                         if (type == TcpListenerComPortType.One2One)
                         {
-                            connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, tcpClient);
+                            connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged,this, tcpClient);
                         }
                     }
                     catch (Exception e)

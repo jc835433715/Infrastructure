@@ -30,7 +30,7 @@ namespace Infrastructure.Plc.Mitsubishi
 
             if (!melsecMcNet.ConnectServer().IsSuccess) throw new ApplicationException("建立与PLC连接失败，请确认");
 
-            connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, melsecMcNet.AlienSession.Socket);
+            connectionStateChangedEventManager.StartMonitor(ConnectionStateChanged, this, melsecMcNet.AlienSession.Socket);
         }
 
         public IEnumerable<TValue> Read<TValue>(DataAddress address)
@@ -217,7 +217,7 @@ namespace Infrastructure.Plc.Mitsubishi
         {
             melsecMcNet?.ConnectClose();
 
-            connectionStateChangedEventManager.StopMonitor( ConnectionStateChanged, this);
+            connectionStateChangedEventManager.StopMonitor(ConnectionStateChanged, this);
 
         }
 
