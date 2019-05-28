@@ -20,21 +20,22 @@ namespace Infrastructure.Plc.Factory
         /// </summary>
         /// <param name="plcProtocolName">协议名称</param>
         /// <param name="tcpClientComPortConfigInfo">TcpClient端口配置信息</param>
+        /// <param name="readTimeoutSeconds">读取超时</param>
         /// <param name="loggerFactory">日志工厂</param>
         /// <returns>Plc对象</returns>
-        public static IPlc Create(PlcProtocolName plcProtocolName, TcpClientComPortConfigInfo tcpClientComPortConfigInfo, ILoggerFactory loggerFactory = null)
+        public static IPlc Create(PlcProtocolName plcProtocolName, TcpClientComPortConfigInfo tcpClientComPortConfigInfo, int readTimeoutSeconds = 3, ILoggerFactory loggerFactory = null)
         {
             IPlc result = null;
             IComPort comPort = new TcpClientComPort(tcpClientComPortConfigInfo, loggerFactory);
 
             if (plcProtocolName == PlcProtocolName.PlcOmronFinsTcp)
             {
-                result = new PlcOmronFins(comPort);
+                result = new PlcOmronFins(comPort, readTimeoutSeconds);
             }
 
             if (plcProtocolName == PlcProtocolName.PlcKeyenceUpperLink)
             {
-                result = new PlcKeyenceUpperLink(comPort);
+                result = new PlcKeyenceUpperLink(comPort, readTimeoutSeconds);
             }
 
             if (plcProtocolName == PlcProtocolName.PlcMelsecMcBinary)
