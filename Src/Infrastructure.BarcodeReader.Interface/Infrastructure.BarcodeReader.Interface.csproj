@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="BarcodeConst.cs" />
     <Compile Include="BarcodeReaderReceivedEventArgs.cs" />
-    <Compile Include="BarcodeReaderType.cs" />
     <Compile Include="IBarcodeReader.cs" />
     <Compile Include="INotifyBarcodeReaderReceived.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

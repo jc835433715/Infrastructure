@@ -8,7 +8,7 @@ namespace Infrastructure.BarcodeReader.Imp
     {
         public BarcodeReaderBase(string name)
         {
-            this.Name = name;
+            this.Name = name ?? string.Empty;
         }
 
         public event EventHandler<BarcodeReaderReceivedEventArgs> BarcoderReceived;

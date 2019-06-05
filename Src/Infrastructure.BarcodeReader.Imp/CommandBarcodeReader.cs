@@ -44,6 +44,8 @@ namespace Infrastructure.BarcodeReader.Imp
 
                 lock (syncObj)
                 {
+                    if (!comPort.IsConnected) comPort.Open(false);
+
                     ClearBarcode();
 
                     comPort.Write(request, 0, request.Length);
