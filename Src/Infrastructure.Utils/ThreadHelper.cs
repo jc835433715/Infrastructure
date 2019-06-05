@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Infrastructure.Utils
@@ -70,6 +71,56 @@ namespace Infrastructure.Utils
         public static void QueueUserWorkItem(Action action)
         {
             QueueUserWorkItem(delegate (object o) { action(); });
+        }
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <typeparam name="T">包含方法所用数据的对象类型</typeparam>
+        /// <typeparam name="TResult">结果类型</typeparam>
+        /// <param name="func">要执行的方法</param>
+        /// <param name="state">包含方法所用数据的对象</param>
+        /// <param name="taskCreationOptions">任务创建选项</param>
+        /// <returns>任务</returns>
+        public static Task<TResult> StartTask<T, TResult>(Func<T, TResult> func, T state = default(T), TaskCreationOptions taskCreationOptions = TaskCreationOptions.None)
+        {
+            return Task.Factory.StartNew(o => func((T)o), state, taskCreationOptions);
+        }
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <typeparam name="TResult">结果类型</typeparam>
+        /// <param name="func">要执行的方法</param>
+        /// <param name="taskCreationOptions">任务创建选项</param>
+        /// <returns>任务</returns>
+        public static Task<TResult> StartTask<TResult>(Func<TResult> func, TaskCreationOptions taskCreationOptions = TaskCreationOptions.None)
+        {
+            return StartTask<object, TResult>(o => func(), null, taskCreationOptions);
+        }
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <typeparam name="T">包含方法所用数据的对象类型</typeparam>
+        /// <param name="action">要执行的方法</param>
+        /// <param name="state">包含方法所用数据的对象</param>
+        /// <param name="taskCreationOptions">任务创建选项</param>
+        /// <returns>任务</returns>
+        public static Task StartTask<T>(Action<T> action, T state = default(T), TaskCreationOptions taskCreationOptions = TaskCreationOptions.None)
+        {
+            return Task.Factory.StartNew(o => action((T)o), state, taskCreationOptions);
+        }
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <param name="action">要执行的方法</param>
+        /// <param name="taskCreationOptions">任务创建选项</param>
+        /// <returns>任务</returns>
+        public static Task StartTask(Action action, TaskCreationOptions taskCreationOptions = TaskCreationOptions.None)
+        {
+            return StartTask<object>(o => action(), null, taskCreationOptions);
         }
     }
 }
