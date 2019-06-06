@@ -20,7 +20,7 @@ namespace Infrastructure.Ioc.Ninject.Tests
         [Test]
         public void InitializeTest()
         {
-            var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.UT" });
+            var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.Tests" });
             ILogger logger = null;
 
             logger = dependencyResolver.GetService<ILogger>(LoggerType.File.ToString());

@@ -21,7 +21,7 @@ namespace Infrastructure.Mapper.AutoMapper.Tests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            this.mapper = new AutoMapperImp(new ReflectionMapperConfigFactory(new string[] { "Infrastructure.UT" }), true);
+            this.mapper = new AutoMapperImp(new ReflectionMapperConfigFactory(new string[] { "Infrastructure.Tests" }), true);
         }
 
         [Test(), Ignore("单进程内只能初始化一次")]
