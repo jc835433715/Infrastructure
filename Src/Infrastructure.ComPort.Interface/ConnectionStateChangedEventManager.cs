@@ -50,6 +50,7 @@ namespace Infrastructure.ComPort.Interface
         /// 启动监视
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
+        /// <param name="sender">发送者</param>
         /// <param name="socket">Socket</param>
         public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, Socket socket)
         {
@@ -60,6 +61,7 @@ namespace Infrastructure.ComPort.Interface
         /// 启动监视
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
+        /// <param name="sender">发送者</param>
         /// <param name="tcpClient">TcpClient</param>
         public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, TcpClient tcpClient)
         {
@@ -70,6 +72,7 @@ namespace Infrastructure.ComPort.Interface
         /// 启动监视
         /// </summary>
         /// <param name="connectionStateChanged">连接状态改变事件事件委托</param>
+        /// <param name="sender">发送者</param>
         /// <param name="serialPort">SerialPort</param>
         public void StartMonitor(EventHandler<ConnectionStateChangedEventArgs> connectionStateChanged, object sender, System.IO.Ports.SerialPort serialPort)
         {

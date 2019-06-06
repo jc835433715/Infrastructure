@@ -1,25 +1,29 @@
-﻿using Infrastructure.Ioc.Interface;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Infrastructure.Ioc.Autofac;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Infrastructure.Ioc.Interface;
 
-namespace Infrastructure.Ioc.Ninject.Tests
+namespace Infrastructure.Ioc.Autofac.Tests
 {
     [TestFixture()]
-    public class NinjectDependencyResolverTests
+    public class AutofacDependencyResolverTests
     {
         private IDependencyResolver dependencyResolver;
 
         [Test, Order(0)]
         public void InitializeForUT()
         {
-            this.dependencyResolver = new NinjectDependencyResolver(new DependencyConfig());
+            this.dependencyResolver = new AutofacDependencyResolver(new DependencyConfig());
         }
 
         [Test]
         public void InitializeTest()
         {
-            var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.Tests" });
+            var dependencyResolver = new AutofacDependencyResolver(new string[] { "Infrastructure.Tests" });
             ILogger logger = null;
 
             logger = dependencyResolver.GetService<ILogger>(LoggerType.File.ToString());
@@ -34,15 +38,7 @@ namespace Infrastructure.Ioc.Ninject.Tests
 
             Assert.IsInstanceOf<FileLogger>(logger);
         }
-
-        [Test()]
-        public void GetServicesGenericTest()
-        {
-            var loggers = dependencyResolver.GetServices<ILogger>();
-
-            Assert.IsTrue(loggers.Count() == 2);
-        }
-
+        
         [Test()]
         public void GetServiceTest()
         {
@@ -50,15 +46,7 @@ namespace Infrastructure.Ioc.Ninject.Tests
 
             Assert.IsInstanceOf<FileLogger>(logger);
         }
-
-        [Test()]
-        public void GetServicesTest()
-        {
-            var loggers = dependencyResolver.GetServices(typeof(ILogger));
-
-            Assert.IsTrue(loggers.Count() == 2);
-        }
-
+        
         [Test]
         public void MultipleBindingsTest()
         {

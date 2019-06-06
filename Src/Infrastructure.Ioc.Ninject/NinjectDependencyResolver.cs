@@ -23,7 +23,7 @@ namespace Infrastructure.Ioc.Ninject
             foreach (var dependencyConfigAssemblyString in dependencyConfigModuleAssemblyStrings)
             {
                 Assembly dependencyConfigAssembly = Assembly.Load(dependencyConfigAssemblyString);
-                var dependencyConfigs = GetAllNinjectModule(dependencyConfigAssembly, dependencyConfigModuleNameSpaceStrings);
+                var dependencyConfigs = GetAllModule(dependencyConfigAssembly, dependencyConfigModuleNameSpaceStrings);
 
                 ninjectModules.AddRange(dependencyConfigs);
             }
@@ -50,18 +50,8 @@ namespace Infrastructure.Ioc.Ninject
         {
             return string.IsNullOrEmpty(name) ? kernel.GetAll(type) : kernel.GetAll(type, name);
         }
-
-        public Lazy<T> GetLazyService<T>(string name = null)
-        {
-            return new Lazy<T>((Func<T>)(() => this.GetService<T>(name)));
-        }
-
-        public Lazy<IEnumerable<T>> GetLazyServices<T>(string name = null)
-        {
-            return new Lazy<IEnumerable<T>>((Func<IEnumerable<T>>)(() => this.GetServices<T>(name)));
-        }
-
-        private IEnumerable<NinjectModule> GetAllNinjectModule(Assembly dependencyConfigAssembly, IEnumerable<string> dependencyConfigNameSpaceStrings)
+        
+        private IEnumerable<NinjectModule> GetAllModule(Assembly dependencyConfigAssembly, IEnumerable<string> dependencyConfigNameSpaceStrings)
         {
             return from t in dependencyConfigAssembly.GetTypes()
                    where t.BaseType == typeof(DependencyConfigModule ) && (dependencyConfigNameSpaceStrings == null || dependencyConfigNameSpaceStrings.Any(e => t.FullName.StartsWith(e)))

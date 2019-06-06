@@ -39,21 +39,5 @@ namespace Infrastructure.Ioc.Interface
         /// <param name="name">绑定名</param>
         /// <returns>服务对象枚举数</returns>
         IEnumerable<object> GetServices(Type serviceType, string name = null);
-
-        /// <summary>
-        /// 获取延迟加载服务对象
-        /// </summary>
-        /// <typeparam name="T">服务类型</typeparam>
-        /// <param name="name">绑定名</param>
-        /// <returns>延迟加载服务对象</returns>
-        Lazy<T> GetLazyService<T>(string name = null);
-
-        /// <summary>
-        /// 获取延迟加载服务对象枚举数
-        /// </summary>
-        /// <typeparam name="T">服务类型</typeparam>
-        /// <param name="name">绑定名</param>
-        /// <returns>延迟加载服务对象枚举数</returns>
-        Lazy<IEnumerable<T>> GetLazyServices<T>(string name = null);
     }
 }

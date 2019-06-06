@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Ioc.Autofac\Infrastructure.Ioc.Autofac.csproj">
+      <Project>{968ab37b-bf16-42f4-b69a-a7ee11cc23d7}</Project>
+      <Name>Infrastructure.Ioc.Autofac</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.Ioc.Interface\Infrastructure.Ioc.Interface.csproj">
       <Project>{def33477-ee47-4598-982c-e918fb20d00d}</Project>
       <Name>Infrastructure.Ioc.Interface</Name>

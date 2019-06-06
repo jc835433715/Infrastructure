@@ -38,6 +38,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
@@ -328,6 +331,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure.Ioc.Autofac.Tests\AutofacDependencyResolverTests.cs" />
     <Compile Include="Infrastructure.Auth.Imp.Tests\AuthImpTests.cs" />
     <Compile Include="Infrastructure.Config.Yaml.Tests\ConfigYamlTests.cs" />
     <Compile Include="Infrastructure.Csv.Imp.Tests\CsvImpTests.cs" />
@@ -337,6 +341,7 @@
     <Compile Include="Infrastructure.ComPort.Imp.Tests\SerialPort\SerialPortComPortTests.cs" />
     <Compile Include="Infrastructure.Config.Interface.Tests\AppSettingsTests.cs" />
     <Compile Include="CodeContractsTests.cs" />
+    <Compile Include="Infrastructure.Ioc.Autofac.Tests\DependencyConfig.cs" />
     <Compile Include="Infrastructure.Opc.OpcUaHelper.Tests\PlcOpcByOpcUaHelperTests.cs" />
     <Compile Include="Infrastructure.Utils.Tests\MessageWritedEventHelperTests.cs" />
     <Compile Include="Infrastructure.Utils.Tests\SymmetricCryptoTests.cs" />
