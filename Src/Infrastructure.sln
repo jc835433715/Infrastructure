@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.UT", "Infrastructure.UT\Infrastructure.UT.csproj", "{3501A1D0-A363-4B21-9B88-4EBD43C0A518}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Utils", "Infrastructure.Utils\Infrastructure.Utils.csproj", "{8938CDED-6AF9-4B4E-AFE6-138FCCA8526E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Auth.Interface", "Infrastructure.Auth.Interface\Infrastructure.Auth.Interface.csproj", "{E2155A35-FF46-4C13-B532-FF35C8C320CC}"
@@ -133,6 +131,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Opc.OpcUaHel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Opc.HOpc", "Infrastructure.Opc.HOpc\Infrastructure.Opc.HOpc.csproj", "{A5D6D51A-557E-446F-8888-F15162C6966F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{3501A1D0-A363-4B21-9B88-4EBD43C0A518}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Infrastructure.Auth.Shared\Infrastructure.Auth.Shared.projitems*{8109ef7b-5eb5-44e3-983f-0f9041f81757}*SharedItemsImports = 4
@@ -143,10 +143,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8938CDED-6AF9-4B4E-AFE6-138FCCA8526E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8938CDED-6AF9-4B4E-AFE6-138FCCA8526E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8938CDED-6AF9-4B4E-AFE6-138FCCA8526E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -359,6 +355,10 @@ Global
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D6D51A-557E-446F-8888-F15162C6966F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3501A1D0-A363-4B21-9B88-4EBD43C0A518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

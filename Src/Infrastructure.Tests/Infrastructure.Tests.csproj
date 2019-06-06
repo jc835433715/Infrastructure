@@ -9,8 +9,8 @@
     <ProjectGuid>{3501A1D0-A363-4B21-9B88-4EBD43C0A518}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Infrastructure.UT</RootNamespace>
-    <AssemblyName>Infrastructure.UT</AssemblyName>
+    <RootNamespace>Infrastructure.Tests</RootNamespace>
+    <AssemblyName>Infrastructure.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Infrastructure.UT.Bin\</OutputPath>
+    <OutputPath>..\Infrastructure.Tests.Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Infrastructure.UT.Bin\</OutputPath>
+    <OutputPath>..\Infrastructure.Tests.Bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

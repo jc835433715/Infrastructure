@@ -1,0 +1,13 @@
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\AppData\AuthDb.db
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\NUnit3.TestAdapter.dll
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\NUnit3.TestAdapter.pdb
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\nunit.engine.dll
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\nunit.engine.api.dll
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\Infrastructure.Tests.dll.config
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\Infrastructure.Tests.dll
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests.Bin\Infrastructure.Tests.pdb
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests\obj\Debug\Infrastructure.Tests.csprojAssemblyReference.cache
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests\obj\Debug\Infrastructure.Tests.csproj.CoreCompileInputs.cache
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests\obj\Debug\Infrastructure.Tests.csproj.CopyComplete
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests\obj\Debug\Infrastructure.Tests.dll
+C:\Users\ZY\Desktop\Infrastructure\Src\Infrastructure.Tests\obj\Debug\Infrastructure.Tests.pdb
