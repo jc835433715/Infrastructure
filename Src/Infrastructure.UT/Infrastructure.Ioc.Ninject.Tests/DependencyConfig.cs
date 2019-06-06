@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.Ioc.Ninject;
-using Ninject;
 
 namespace Infrastructure.Ioc.Ninject.Tests
 {
-    class DependencyConfig : DependencyConfigBase
+    class DependencyConfig : DependencyConfigModule 
     {
-        public override void Load(IKernel kernel)
+        public override void Load()
         {
-            kernel.Bind<ILogger>().To<FileLogger>().Named(LoggerType.File.ToString());
+            this.Kernel.Bind<ILogger>().To<FileLogger>().Named(LoggerType.File.ToString());
 
-            kernel.Bind<ILogger>().To<DbLogger>().Named(LoggerType.Db.ToString());
+            this.Kernel.Bind<ILogger>().To<DbLogger>().Named(LoggerType.Db.ToString());
 
-            kernel.Bind<IA, IB>().To<AB>()
+            this.Kernel.Bind<IA, IB>().To<AB>()
                 .InSingletonScope();
         }
     }

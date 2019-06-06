@@ -12,22 +12,21 @@ namespace Infrastructure.Ioc.Factory
         /// <summary>
         /// 初始化Ninject
         /// </summary>
-        /// <param name="dependencyConfigAssemblyStrings">依赖注入配置程序集</param>
-        /// <param name="dependencyConfigNameSpaceStrings">依赖注入配置程序集命名空间</param>
-        /// <param name="kernel">Ninject的kernel</param>
-        public static void Initialize(IEnumerable<string> dependencyConfigAssemblyStrings, IEnumerable<string> dependencyConfigNameSpaceStrings = null, object kernel = null)
+        /// <param name="dependencyConfigModuleAssemblyStrings">依赖注入配置模块程序集</param>
+        /// <param name="dependencyConfigModuleNameSpaceStrings">依赖注入配置模块程序集命名空间</param>
+        public static void Initialize(IEnumerable<string> dependencyConfigModuleAssemblyStrings, IEnumerable<string> dependencyConfigModuleNameSpaceStrings = null)
         {
-            dependencyResolver = new NinjectDependencyResolver(dependencyConfigAssemblyStrings, dependencyConfigNameSpaceStrings, kernel);
+            dependencyResolver = new NinjectDependencyResolver(dependencyConfigModuleAssemblyStrings, dependencyConfigModuleNameSpaceStrings);
         }
 
         /// <summary>
         /// 初始化Ninject
-        /// <param name="dependencyConfig">继承DependencyConfigBase的对象</param>
+        /// <param name="dependencyConfigModule">依赖注入配置模块</param>
         /// <param name="kernel">Ninject的kernel</param>
         /// </summary>
-        public static void Initialize(object dependencyConfig, object kernel = null)
+        public static void Initialize(object dependencyConfigModule, object kernel = null)
         {
-            dependencyResolver = new NinjectDependencyResolver(dependencyConfig, kernel);
+            dependencyResolver = new NinjectDependencyResolver(dependencyConfigModule, kernel);
         }
         
         /// <summary>

@@ -1,0 +1,12 @@
+using Ninject;
+using Ninject.Modules;
+
+namespace Infrastructure.Ioc.Ninject
+{
+    /// <summary>
+    /// “¿¿µ≈‰÷√ƒ£øÈ
+    /// </summary>
+    public abstract class DependencyConfigModule : NinjectModule
+    {
+    }
+}

@@ -10,11 +10,6 @@ namespace Infrastructure.Ioc.Ninject.Tests
     {
         private IDependencyResolver dependencyResolver;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            this.dependencyResolver = new NinjectDependencyResolver();
-        }
 
         [Test, Order(0)]
         public void InitializeForUT()
@@ -25,14 +20,12 @@ namespace Infrastructure.Ioc.Ninject.Tests
         [Test]
         public void InitializeTest()
         {
-            using (var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.UT" }))
-            {
-                ILogger logger = null;
+            var dependencyResolver = new NinjectDependencyResolver(new string[] { "Infrastructure.UT" });
+            ILogger logger = null;
 
-                logger = dependencyResolver.GetService<ILogger>(LoggerType.File.ToString());
+            logger = dependencyResolver.GetService<ILogger>(LoggerType.File.ToString());
 
-                Assert.IsInstanceOf<FileLogger>(logger);
-            }
+            Assert.IsInstanceOf<FileLogger>(logger);
         }
 
         [Test()]
@@ -90,12 +83,6 @@ namespace Infrastructure.Ioc.Ninject.Tests
             IB b = dependencyResolver.GetService<IB>();
 
             Assert.AreSame(a, b);
-        }
-
-        [OneTimeTearDown]
-        public void DisposeTest()
-        {
-            (this.dependencyResolver as IDisposable).Dispose();
         }
     }
 }
