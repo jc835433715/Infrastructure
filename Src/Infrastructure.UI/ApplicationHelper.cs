@@ -92,7 +92,14 @@ namespace Infrastructure.UI
             }
             finally
             {
-                finallyAction();
+                try
+                {
+                    finallyAction();
+                }
+                catch (Exception e)
+                {
+                    logAction(e);
+                }
             }
         }
 
