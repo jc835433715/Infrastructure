@@ -34,7 +34,7 @@ namespace Infrastructure.Opc.OpcUaHelper
                     client.UserIdentity = new UserIdentity(opcClientOptions.UserName, opcClientOptions.Password);
                 }
 
-                client.ConnectServer(uriString);
+                client.ConnectServer(uriString).Wait();
 
                 connectionStateChangedEventManager.OnConnectionStateChanged(ConnectionStateChanged, this, new ConnectionStateChangedEventArgs() { IsConnected = true });
             }

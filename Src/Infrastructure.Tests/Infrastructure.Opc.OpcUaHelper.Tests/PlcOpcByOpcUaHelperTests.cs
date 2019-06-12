@@ -1,6 +1,4 @@
 ﻿using Infrastructure.Common.Interface;
-using Infrastructure.Opc.OpcUaHelper;
-using Infrastructure.Plc.Interface;
 using NUnit.Framework;
 using System;
 using System.Linq;
