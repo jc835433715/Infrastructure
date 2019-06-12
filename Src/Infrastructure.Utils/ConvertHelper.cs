@@ -34,15 +34,44 @@ namespace Infrastructure.Utils
         }
 
         /// <summary>
-        /// 转换为整型数值
+        /// 转换为短整
         /// </summary>
         /// <param name="value">数字字符串</param>
-        /// <returns>成功，返回实际数值；失败，返回int.MinValue</returns>
+        /// <returns>实际数值</returns>
+        public static short ToShort(this string value)
+        {
+            return short.Parse(value);
+        }
+
+        /// <summary>
+        /// 转换为无符号短整
+        /// </summary>
+        /// <param name="value">数字字符串</param>
+        /// <returns>实际数值</returns>
+        public static ushort ToUshort(this string value)
+        {
+            return ushort.Parse(value);
+        }
+
+        /// <summary>
+        /// 转换为整型
+        /// </summary>
+        /// <param name="value">数字字符串</param>
+        /// <returns>实际数值</returns>
         public static int ToInt(this string value)
         {
-            if (!int.TryParse(value, out int result)) result = int.MinValue;
-
-            return result;
+            return int.Parse(value);
         }
+
+        /// <summary>
+        /// 转换为浮点型
+        /// </summary>
+        /// <param name="value">数字字符串</param>
+        /// <returns>实际数值</returns>
+        public static float ToSingle(this string value)
+        {
+            return float.Parse(value);
+        }
+
     }
 }
