@@ -41,7 +41,7 @@ namespace Infrastructure.Log.Factory
         {
             return loggerFactory.GetLogger(name);
         }
-        
+
         /// <summary>
         /// 清理日志
         /// </summary>
@@ -49,17 +49,16 @@ namespace Infrastructure.Log.Factory
         /// <param name="maxDay">日志保留最大天数</param>
         public static void Clear(string logDirectory, int maxDay)
         {
-            try
+            foreach (var d in FileSystemHelper.GetDirectories(logDirectory))
             {
-                var queryDirectories = from d in FileSystemHelper.GetDirectories(logDirectory)
-                                       where DateTime.Now - DateTime.Parse(d.Split('\\').Last()) >= TimeSpan.FromDays(maxDay)
-                                       select d;
-
-                queryDirectories.ToList().ForEach(e => Directory.Delete(e, true));
-            }
-            catch (Exception e)
-            {
-                GetLogger("Infrastructure.Utils.LogManager").Error(e.ToString());
+                try
+                {
+                    if (DateTime.Now - DateTime.Parse(d.Split('\\').Last()) >= TimeSpan.FromDays(maxDay))
+                    {
+                        Directory.Delete(d, true);
+                    }
+                }
+                catch { }
             }
         }
 

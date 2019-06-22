@@ -367,6 +367,7 @@
     <Compile Include="Infrastructure.Plc.Factory.Tests\PlcAdapterTests.cs" />
     <Compile Include="Infrastructure.BarcodeReader.Imp\NetBarcodeReaderTests.cs" />
     <Compile Include="Infrastructure.Plc.Interface.Tests\PlcAddressHelperTests.cs" />
+    <Compile Include="Infrastructure.Log.Factory.Tests\LogManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure.Serialization.Newtonsoft.Tests\XmlConverterTests.cs" />
     <Compile Include="Infrastructure.Plc.Omron.Tests\ProtocolFinsTcpTests.cs" />
