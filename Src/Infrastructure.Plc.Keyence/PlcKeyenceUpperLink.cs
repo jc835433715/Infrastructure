@@ -47,33 +47,36 @@ namespace Infrastructure.Plc.Keyence
 
         public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
+            var result = new TValue[] { };
+
             if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
 
             if (address.Type == DataAddressType.Boolean && address.Offset != -1)
             {
-                var bitArray = GetBitArray(address);
+                var value = (TValue)Convert.ChangeType(((GetValue(address) >> address.Offset) & 0x0001) == 1, typeof(TValue));
 
-                var result = (TValue)Convert.ChangeType(bitArray[address.Offset] == '1', typeof(TValue));
-
-                return new TValue[] { result };
+                result = new TValue[] { value };
             }
-
-            var command = ProtocolUpperLinkCommand.GetReadCommand(address);
-            byte[] response = { };
-
-            using (new StopwatchWrapper($"读取PLC"))
+            else
             {
-                response = Send(command);
+                var command = ProtocolUpperLinkCommand.GetReadCommand(address);
+                byte[] response = { };
+
+                using (new StopwatchWrapper($"读取PLC"))
+                {
+                    response = Send(command);
+                }
+
+                if (!response.Any())
+                {
+                    Reconnect();
+
+                    throw new ApplicationException($"读取失败，地址：{address }");
+                }
+
+                result = GetValues<TValue>(address, response);
             }
-
-            if (!response.Any())
-            {
-                Reconnect();
-
-                throw new ApplicationException($"读取失败，地址：{address }");
-            }
-
-            return GetValues<TValue>(address, response);
+            return result;
         }
 
         public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
@@ -84,12 +87,17 @@ namespace Infrastructure.Plc.Keyence
 
             if (address.Type == DataAddressType.Boolean && address.Offset != -1)
             {
+                var value = GetValue(address);
+                var offset = (ushort)Math.Pow(2, address.Offset);
 
-                var bitArray = GetBitArray(address);
-
-                bitArray[address.Offset] = string.Compare(values.Single().ToString(), "true") == 0 ? '1' : '0';
-
-                var value = Convert.ToUInt16(new string(bitArray.Reverse().ToArray()), 2);
+                if (bool.Parse(values.Single().ToString()))
+                {
+                    value = (ushort)(value | offset);
+                }
+                else
+                {
+                    value = (ushort)(value & (~offset));
+                }
 
                 Write(new DataAddress()
                 {
@@ -99,20 +107,22 @@ namespace Infrastructure.Plc.Keyence
                     Name = address.Name ?? string.Empty
                 }, new ushort[] { value });
             }
-
-            var command = ProtocolUpperLinkCommand.GetWriteCommand(address, values);
-            byte[] response = { };
-
-            using (new StopwatchWrapper($"写入PLC"))
+            else
             {
-                response = Send(command);
-            }
+                var command = ProtocolUpperLinkCommand.GetWriteCommand(address, values);
+                byte[] response = { };
 
-            if (!response.Any() || !GetString(response).Contains("OK"))
-            {
-                Reconnect();
+                using (new StopwatchWrapper($"写入PLC"))
+                {
+                    response = Send(command);
+                }
 
-                throw new ApplicationException($"写入失败，地址：{address }");
+                if (!response.Any() || !GetString(response).Contains("OK"))
+                {
+                    Reconnect();
+
+                    throw new ApplicationException($"写入失败，地址：{address }");
+                }
             }
         }
 
@@ -121,9 +131,9 @@ namespace Infrastructure.Plc.Keyence
             return Encoding.ASCII.GetString(response);
         }
 
-        private char[] GetBitArray(DataAddress address)
+        private ushort GetValue(DataAddress address)
         {
-            var data = Read<ushort>(new DataAddress()
+            var value = Read<ushort>(new DataAddress()
             {
                 Type = DataAddressType.Ushort,
                 Offset = 0,
@@ -131,7 +141,7 @@ namespace Infrastructure.Plc.Keyence
                 Name = address.Name ?? string.Empty
             }).Single();
 
-            return Convert.ToString(data, 2).PadLeft(16, '0').Reverse().ToArray();
+            return value;
         }
 
         private TValue[] GetValues<TValue>(DataAddress address, byte[] response)

@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Common.Interface;
 using Infrastructure.ComPort.Imp.Net;
 using Infrastructure.ComPort.Interface;
-using Infrastructure.Plc.Interface;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -22,7 +21,7 @@ namespace Infrastructure.Plc.Keyence.Tests
                 SendTimeout = 500,
                 ReceiveTimeout = 500
             });
-            PlcKeyenceUpperLink protocolHostLink = new PlcKeyenceUpperLink(tcpClientComPort,0);
+            PlcKeyenceUpperLink protocolHostLink = new PlcKeyenceUpperLink(tcpClientComPort,3);
 
             try
             {
