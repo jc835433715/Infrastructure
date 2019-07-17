@@ -56,7 +56,7 @@ namespace Infrastructure.Common.Interface
         /// 地址偏移，从0开始
         /// Type为Int、Short、Ushort、Int、Float，偏移等同数据个数
         /// Type为String，偏移为字符数
-        /// Type为Boolean，偏移为位数，Modbus的话，为IO数
+        /// Type为Boolean，[0,15]:偏移为位数,-1:整个字表示一个Boolean;Modbus的话，为IO数
         /// </summary>
         public int Offset { get; set; }
 

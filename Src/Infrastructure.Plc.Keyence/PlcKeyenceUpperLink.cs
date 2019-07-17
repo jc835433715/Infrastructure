@@ -47,13 +47,13 @@ namespace Infrastructure.Plc.Keyence
 
         public IEnumerable<TValue> Read<TValue>(DataAddress address)
         {
-            var result = new TValue[] { };
-
             if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
+
+            var result = new TValue[] { };
 
             if (address.Type == DataAddressType.Boolean && address.Offset != -1)
             {
-                var value = (TValue)Convert.ChangeType(((GetValue(address) >> address.Offset) & 0x0001) == 1, typeof(TValue));
+                var value = (TValue)Convert.ChangeType(((Read(address) >> address.Offset) & 0x0001) == 1, typeof(TValue));
 
                 result = new TValue[] { value };
             }
@@ -76,6 +76,7 @@ namespace Infrastructure.Plc.Keyence
 
                 result = GetValues<TValue>(address, response);
             }
+
             return result;
         }
 
@@ -87,16 +88,15 @@ namespace Infrastructure.Plc.Keyence
 
             if (address.Type == DataAddressType.Boolean && address.Offset != -1)
             {
-                var value = GetValue(address);
-                var offset = (ushort)Math.Pow(2, address.Offset);
+                var value = Read(address);
 
                 if (bool.Parse(values.Single().ToString()))
                 {
-                    value = (ushort)(value | offset);
+                    value = (ushort)(value | (0x0001 << address.Offset));
                 }
                 else
                 {
-                    value = (ushort)(value & (~offset));
+                    value = (ushort)(value & (~(0x0001 << address.Offset)));
                 }
 
                 Write(new DataAddress()
@@ -131,17 +131,15 @@ namespace Infrastructure.Plc.Keyence
             return Encoding.ASCII.GetString(response);
         }
 
-        private ushort GetValue(DataAddress address)
+        private ushort Read(DataAddress address)
         {
-            var value = Read<ushort>(new DataAddress()
+            return Read<ushort>(new DataAddress()
             {
                 Type = DataAddressType.Ushort,
                 Offset = 0,
                 Value = address.Value,
                 Name = address.Name ?? string.Empty
             }).Single();
-
-            return value;
         }
 
         private TValue[] GetValues<TValue>(DataAddress address, byte[] response)
