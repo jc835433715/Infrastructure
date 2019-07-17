@@ -49,6 +49,15 @@ namespace Infrastructure.Plc.Keyence
         {
             if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
 
+            if (address.Type == DataAddressType.Boolean && address.Offset != -1)
+            {
+                var bitArray = GetBitArray(address);
+
+                var result = (TValue)Convert.ChangeType(bitArray[address.Offset] == '1', typeof(TValue));
+
+                return new TValue[] { result };
+            }
+
             var command = ProtocolUpperLinkCommand.GetReadCommand(address);
             byte[] response = { };
 
@@ -70,7 +79,26 @@ namespace Infrastructure.Plc.Keyence
         public void Write<TValue>(DataAddress address, IEnumerable<TValue> values)
         {
             if (address.Equals(DataAddress.Empty)) throw new ApplicationException("地址为空");
+
             if (values == null || !values.Any()) throw new ApplicationException($"参数异常，values为null或空");
+
+            if (address.Type == DataAddressType.Boolean && address.Offset != -1)
+            {
+
+                var bitArray = GetBitArray(address);
+
+                bitArray[address.Offset] = string.Compare(values.Single().ToString(), "true") == 0 ? '1' : '0';
+
+                var value = Convert.ToUInt16(new string(bitArray.Reverse().ToArray()), 2);
+
+                Write(new DataAddress()
+                {
+                    Type = DataAddressType.Ushort,
+                    Offset = 0,
+                    Value = address.Value,
+                    Name = address.Name ?? string.Empty
+                }, new ushort[] { value });
+            }
 
             var command = ProtocolUpperLinkCommand.GetWriteCommand(address, values);
             byte[] response = { };
@@ -91,6 +119,19 @@ namespace Infrastructure.Plc.Keyence
         private string GetString(byte[] response)
         {
             return Encoding.ASCII.GetString(response);
+        }
+
+        private char[] GetBitArray(DataAddress address)
+        {
+            var data = Read<ushort>(new DataAddress()
+            {
+                Type = DataAddressType.Ushort,
+                Offset = 0,
+                Value = address.Value,
+                Name = address.Name ?? string.Empty
+            }).Single();
+
+            return Convert.ToString(data, 2).PadLeft(16, '0').Reverse().ToArray();
         }
 
         private TValue[] GetValues<TValue>(DataAddress address, byte[] response)
